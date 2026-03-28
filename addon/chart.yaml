@@ -1,0 +1,47 @@
+esphome:
+  build_flags:
+    - -D LV_USE_CHART=1
+  includes:
+    - addon/chart.h
+  on_boot:
+    then:
+      - delay: 5sec
+      - lambda: |-
+            draw_chart();
+
+interval:
+  - interval: 100ms
+    startup_delay: 10sec
+    then:
+      - lambda: |-
+            update_chart();
+
+globals:
+  # Define a global variable as a vector with type float.
+  - id: chart_values
+    type: std::vector<float>
+
+sensor:
+  - platform: homeassistant
+    entity_id: sensor.steckdose_nr_3_power
+    force_update: True
+    id: solar_power
+    # If your sensor doesn't have a fixed update interval, use a filter to force it to have one.
+    filters:
+      - throttle_average: 600s
+    on_value:
+      lambda: |-
+        // Store sensor value (x) at the END of the vector
+        id(chart_values).push_back(x);
+        // Limit the number of values in the vector to 60, delete the FIRST one (oldest) if we have 61
+        if (id(chart_values).size() == 61) {
+          id(chart_values).erase(id(chart_values).begin()); 
+          }
+        // Now print the contents of the vector out, oldest to newest
+        int counter = 0;
+        // Use an iterator to access the values.  Iterators are like pointers for vectors but contain the value they point to
+        std::vector<float>::iterator it;
+        for (it = id(chart_values).begin(); it != id(chart_values).end(); ++it) {
+          ++counter;
+          ESP_LOGD("Value", "Temp is %f, count is %i", *it, counter);
+        }
