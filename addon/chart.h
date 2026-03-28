@@ -5,8 +5,8 @@ static void draw_chart()
 {
   chart = lv_chart_create(lv_scr_act());
 
-  lv_obj_set_size(chart, 480, 150);
-  lv_obj_set_pos(chart, 0, 170);
+  lv_obj_set_size(chart, 100, 150);
+  lv_obj_set_pos(chart, 10, 10);
   lv_obj_set_style_bg_color(chart, lv_color_make(0, 0, 0), LV_PART_MAIN);                 //Chart background color
   lv_obj_set_style_size(chart, 0, LV_PART_INDICATOR);                                     //Points on line size
   lv_obj_set_style_line_color(chart, lv_color_make(50, 50, 50), LV_STATE_DEFAULT);        //Horizontal div lines color
@@ -26,7 +26,6 @@ static void update_chart()
 {
   uint32_t i;
   for(i = 0; i < 60; i++) {
-    lv_chart_set_next_value(chart, ser, (int32_t)chart_values[i]);
+    lv_chart_set_next_value(chart, ser, (int32_t)id(chart_values)[i]);
   }
-  //lv_chart_set_next_value(chart, ser, chart_values);
 }
