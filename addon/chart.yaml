@@ -3,7 +3,7 @@ esphome:
     build_flags:
       - -D LV_USE_CHART=1
   includes:
-    - addon/chart.h
+    - https://github.com/JonnyKreng/HomeCockpit/blob/main/addon/chart.h
   on_boot:
     then:
       - delay: 5sec
