@@ -7,5 +7,6 @@ packages:
   network: !include addon/network.yaml
   fonts: !include assets/fonts.yaml
   icons: !include assets/icons.yaml
-  button: !include theme/button.yaml
-  chart: !include addon/chart.yaml
+  global-theme: !include theme/global.yaml
+  button-theme: !include theme/button.yaml
+  chart: !include addon/solar-chart.yaml

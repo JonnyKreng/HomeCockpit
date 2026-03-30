@@ -19,6 +19,9 @@ esp32:
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
+  platformio_options:
+    build_flags:
+      - -D LV_USE_CHART=1
   
 # Secondary ESP32-C6 device for connectivity
 esp32_hosted:

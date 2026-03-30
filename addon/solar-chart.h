@@ -1,7 +1,7 @@
+#include "theme.h"
+
 static lv_obj_t * chart;
 static lv_chart_series_t * ser;
-
-#include "theme.h"
 
 
 static void DrawCallbackEvent(lv_event_t* e)
@@ -55,7 +55,7 @@ static void draw_chart(lv_obj_t * parent = NULL)
   }
 
   lv_obj_set_size(container, X_HEIGHT, Y_HEIGHT);
-  lv_obj_set_style_bg_color(container, PRIMARY_COLOR, LV_PART_MAIN);
+  lv_obj_set_style_bg_color(container, BACKGROUND_COLOR, LV_PART_MAIN);
   lv_obj_set_style_border_width(container, 0, LV_PART_MAIN);
   lv_obj_set_style_pad_all(container, 14, LV_PART_MAIN);
 
@@ -67,7 +67,7 @@ static void draw_chart(lv_obj_t * parent = NULL)
   lv_obj_set_style_bg_color(chart, BACKGROUND_COLOR, LV_PART_MAIN);                 // Chart background color
   lv_obj_set_style_size(chart, 0, LV_PART_INDICATOR);                                     // Points on line size
   lv_obj_set_style_line_color(chart, PRIMARY_COLOR, LV_STATE_DEFAULT);        // Grid lines color
-  //lv_obj_set_style_border_color(chart, PRIMARY_COLOR, LV_STATE_DEFAULT);      // Border color
+  //lv_obj_set_style_border_color(chart, lv_color_hex(LINE_COLOR), LV_STATE_DEFAULT);      // Border color
   lv_obj_set_style_border_width(chart, 0, LV_PART_MAIN);
   
   lv_chart_set_div_line_count(chart, Y_GRID_LINES, X_GRID_LINES);

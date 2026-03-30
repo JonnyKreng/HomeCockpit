@@ -1,12 +1,11 @@
 substitutions:
-  icon_font: icon_font
-  button_on_color: "0xFF8C00"
-  button_text_color: "0xFFFFFF"
-  button_control_color: "0x313131"
-  button_height: 130px
-  button_width: 200px
-  padding: 14px
-  radius: 8px
+  button_on_color: $heighlight_color
+  button_text_color: $text_color
+  button_control_color: $primary_color
+  button_height: $widget_height
+  button_width: $widget_width
+  button_padding: $widget_padding
+  button_radius: $widget_radius
 
 lvgl:
   style_definitions:
@@ -17,10 +16,10 @@ lvgl:
     button:
       text_font: label_font
       scroll_on_focus: false
-      radius: $radius
+      radius: $button_radius
       width: $button_width
       height: $button_height
-      pad_all: $padding
+      pad_all: $button_padding
       shadow_width: 0
       text_color: $button_text_color
       checked:
