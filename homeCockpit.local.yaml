@@ -8,9 +8,5 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-# Packages
 packages:
-  setup:
-    url: https://github.com/JonnyKreng/HomeCockpit
-    file: package.yaml
-    refresh: 1sec
+  device: !include package.yaml

@@ -6,43 +6,47 @@ esphome:
     - addon/chart.h
   on_boot:
     then:
-      - delay: 5sec
+      - delay: 1sec
       - lambda: |-
             draw_chart();
-
-interval:
-  - interval: 100ms
-    startup_delay: 10sec
-    then:
-      - lambda: |-
-            update_chart();
 
 globals:
   # Define a global variable as a vector with type float.
   - id: chart_values
     type: std::vector<float>
 
+
+# interval:
+#   - interval: 300s
+#     startup_delay: 10sec
+#     then:
+#       - lambda: |-
+#           float value = 0;
+#           int counter = id(chart_values).size();
+#           for(int i = 0; i < counter; i++) {
+#             value += id(chart_values).back();
+#             id(chart_values).pop_back();
+#           }
+#           float average = value / counter;
+#           ESP_LOGD("Interval", "Average is %f, count is %i", average, counter); 
+#           update_chart(average);
+
+interval:
+  - interval: 0.1s
+    startup_delay: 2sec
+    then:
+      - lambda: |-
+
+          static float value = 0;
+          update_chart(sin(value/4.0) * 400 + 400);
+          value += 0.1;
+
 sensor:
   - platform: homeassistant
     entity_id: sensor.steckdose_nr_3_power
     force_update: True
     id: solar_power
-    # If your sensor doesn't have a fixed update interval, use a filter to force it to have one.
-    filters:
-      - throttle_average: 600s
     on_value:
       lambda: |-
-        // Store sensor value (x) at the END of the vector
-        id(chart_values).push_back(x);
-        // Limit the number of values in the vector to 60, delete the FIRST one (oldest) if we have 61
-        if (id(chart_values).size() == 61) {
-          id(chart_values).erase(id(chart_values).begin()); 
-          }
-        // Now print the contents of the vector out, oldest to newest
-        int counter = 0;
-        // Use an iterator to access the values.  Iterators are like pointers for vectors but contain the value they point to
-        std::vector<float>::iterator it;
-        for (it = id(chart_values).begin(); it != id(chart_values).end(); ++it) {
-          ++counter;
-          ESP_LOGD("Value", "Temp is %f, count is %i", *it, counter);
-        }
+        id(chart_values).insert(id(chart_values).begin(), x);
+        ESP_LOGD("Interval", "Pushed value to vector %f", x); 
