@@ -1,0 +1,75 @@
+name: Home
+id: overview_tab
+layout: 
+  type: flex
+  flex_flow: column_wrap
+  pad_row: 10
+  pad_column: 10
+width: 100%
+bg_color: $background_color
+bg_opa: cover
+
+widgets:
+  # Office Calls Scene
+  - button: 
+      height: $button_height
+      width: $button_width
+      checkable: true
+      id: office_scene_calls_button2
+      styles: control
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            id: office_scene_calls_icon2              
+            text: $videocall
+        - label:
+            align: bottom_left
+            id: office_scene_calls_label2
+            text: "Calls"
+
+  # Office Calls Scene
+  - button: 
+      height: $button_height
+      width: $button_width
+      checkable: true
+      id: office_scene_calls_button
+      styles: control
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            id: office_scene_calls_icon                
+            text: $videocall
+        - label:
+            align: bottom_left
+            id: office_scene_calls_label
+            text: "Calls"
+      on_press:
+        - homeassistant.service:
+            service: switch.toggle
+            data:
+              entity_id: switch.office_calls_stateful_scene
+
+  # Office Evening Scene
+  - button: 
+      height: $button_height
+      width: $button_width
+      checkable: true
+      id: office_scene_evening_button
+      styles: control
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            id: office_scene_evening_icon                
+            text: $nightlight
+        - label:
+            align: bottom_left
+            id: office_scene_evening_label
+            text: "Evening"
+      on_press:
+        - homeassistant.service:
+            service: switch.toggle
+            data:
+              entity_id: switch.office_evening_stateful_scene
