@@ -42,6 +42,23 @@ lvgl:
       pad_right: 5
       
       widgets:
+        # Office Calls Scene
+        - button: 
+            height: $button_height
+            width: $button_width
+            checkable: true
+            id: office_scene_calls_button2
+            styles: control
+            widgets:
+              - label:
+                  text_font: $icon_font
+                  align: top_left
+                  id: office_scene_calls_icon2              
+                  text: $videocall
+              - label:
+                  align: bottom_left
+                  id: office_scene_calls_label2
+                  text: "Calls"
 
         # Office Calls Scene
         - button: 

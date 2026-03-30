@@ -28,7 +28,7 @@ static void DrawCallbackEvent(lv_event_t* e)
     }
     else if (dsc->id == LV_CHART_AXIS_PRIMARY_Y)
     {
-        lv_snprintf(dsc->text, dsc->text_length, "%.0f", dsc->value);
+        lv_snprintf(dsc->text, dsc->text_length, "%d%", dsc->value);
     }
 }
 
@@ -41,14 +41,16 @@ static void draw_chart()
   const u_int MAX_POWER_WATTS = 800;    // Solar panel max power in watts
 
   const u_int X_GRID_LINES = 13;        // Hourly grid lines
-  const u_int Y_GRID_LINES = 8;         // Power grid lines (100W intervals)
+  const u_int Y_GRID_LINES = 9;         // Power grid lines (100W intervals)
 
   //const u_int PADDING = 50;
 
   chart = lv_chart_create(lv_scr_act());
 
+  //lv_obj_add_flag(chart, LV_OBJ_FLAG_IGNORE_LAYOUT);
+  //lv_obj_set_pos(chart, 20, 170);
+
   lv_obj_set_size(chart, X_HEIGHT, Y_HEIGHT);
-  lv_obj_set_pos(chart, 60, 170);
   lv_obj_set_style_bg_color(chart, lv_color_make(0, 0, 0), LV_PART_MAIN);                 // Chart background color
   lv_obj_set_style_size(chart, 0, LV_PART_INDICATOR);                                     // Points on line size
   lv_obj_set_style_line_color(chart, lv_color_make(50, 50, 50), LV_STATE_DEFAULT);        // Grid lines color
@@ -66,7 +68,7 @@ static void draw_chart()
   lv_chart_set_range(chart, LV_CHART_AXIS_PRIMARY_Y, 0, MAX_POWER_WATTS);
 
   // Add Y-axis labels (Power in Watts: 0, 200, 400, 600, 800)
-  lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 10, 5, 5, 1, true, 50);
+  lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_Y, 5, 5, Y_GRID_LINES, 1, true, 50);
 
   // Add X-axis labels (showing every 6 hours: 0, 6, 12, 18, 24)
   lv_chart_set_axis_tick(chart, LV_CHART_AXIS_PRIMARY_X, 5, 5, X_GRID_LINES , 2, true, 50);
