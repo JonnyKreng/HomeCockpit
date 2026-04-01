@@ -11,6 +11,10 @@ lvgl:
       height: $widget_height_double
       width: $widget_width_double
 
+    - id: widget_two_by_three
+      height: $widget_height_double
+      width: $widget_width_double
+
   theme:
     obj:
       bg_color: $primary_color

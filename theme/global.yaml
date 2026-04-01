@@ -11,6 +11,7 @@ substitutions:
   widget_height_half: 73px
   widget_height_double: 324px
   widget_width_double: 398px
+  widget_width_tripple: 610px
 
 esphome:
   platformio_options:
