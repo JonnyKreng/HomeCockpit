@@ -1,0 +1,25 @@
+lvgl:
+  style_definitions:
+    - id: widget_half
+      height: $widget_height_half
+      pad_all: 8px
+
+    - id: widget_double_height
+      height: $widget_height_double
+
+    - id: widget_double
+      height: $widget_height_double
+      width: $widget_width_double
+
+  theme:
+    obj:
+      bg_color: $primary_color
+      bg_opa: cover
+      radius: $widget_radius
+      width: $widget_width
+      height: $widget_height
+      pad_all: $widget_padding
+      shadow_width: 0
+      border_width: 0
+      text_color: $text_color
+      scrollbar_mode: "off"

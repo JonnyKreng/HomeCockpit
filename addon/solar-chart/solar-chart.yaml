@@ -46,4 +46,7 @@ sensor:
     on_value:
       lambda: |-
         id(chart_values).insert(id(chart_values).begin(), x);
-        ESP_LOGD("Interval", "Pushed value to vector %f", x); 
+        ESP_LOGD("Interval", "Pushed value to vector %f", x);
+        char buf[16];
+        snprintf(buf, sizeof(buf), "%.0f W", x);
+        lv_label_set_text(id(solar_power_label), buf);

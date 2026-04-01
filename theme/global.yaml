@@ -8,3 +8,6 @@ substitutions:
   widget_width: 200px
   widget_padding: 14px
   widget_radius: 8px
+  widget_height_half: 60px
+  widget_height_double: 270px
+  widget_width_double: 410px

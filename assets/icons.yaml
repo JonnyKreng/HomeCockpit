@@ -22,6 +22,7 @@ font:
       "\U000F089E",  # mdi-battery
       "\U000F07DE",  # mdi-filament
       "\U000F0317",  # mdi-lan
+      "\U000F1A73",  # mdi-solar-panel-large
       ]
 
 # Map icons to names
@@ -42,4 +43,5 @@ substitutions:
   battery:        "\U000F089E"
   filament:       "\U000F07DE"
   lan:            "\U000F0317"
+  solar_power_icon: "\U000F1A73"
 

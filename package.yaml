@@ -9,4 +9,5 @@ packages:
   icons: !include assets/icons.yaml
   global-theme: !include theme/global.yaml
   button-theme: !include theme/button.yaml
+  container-theme: !include theme/container.yaml
   chart: !include addon/solar-chart/solar-chart.yaml

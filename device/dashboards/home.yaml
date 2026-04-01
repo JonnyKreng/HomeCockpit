@@ -10,8 +10,25 @@ bg_color: $background_color
 bg_opa: cover
 
 widgets:
+  # Solar Power
+  - obj:
+      id: solar_power_widget
+      styles: widget_half
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: left_mid
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_power_label
+            align: right_mid
+            text: "-- W"
+            text_font: label_font
+            text_color: $text_color
+
   # Office Calls Scene
-  - button: 
+  - button:
       height: $button_height
       width: $button_width
       checkable: true
