@@ -55,7 +55,7 @@ static void draw_chart(lv_obj_t * parent = NULL)
   }
 
   lv_obj_set_size(container, X_HEIGHT, Y_HEIGHT);
-  lv_obj_set_style_bg_color(container, BACKGROUND_COLOR, LV_PART_MAIN);
+  lv_obj_set_style_bg_color(container, PRIMARY_COLOR, LV_PART_MAIN);
   lv_obj_set_style_border_width(container, 0, LV_PART_MAIN);
   lv_obj_set_style_pad_all(container, 14, LV_PART_MAIN);
 

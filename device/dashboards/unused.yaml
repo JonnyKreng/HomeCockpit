@@ -1,0 +1,529 @@
+
+
+        # # Office Dimmed Scene
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: office_scene_dimmed_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: office_scene_dimmed_icon                
+        #           text: $nightlight
+        #       - label:
+        #           align: bottom_left
+        #           id: office_scene_dimmed_label
+        #           text: "Dimmed"
+        #     on_press:
+        #       - homeassistant.service:
+        #           service: switch.toggle
+        #           data:
+        #             entity_id: switch.office_dimmed_stateful_scene
+
+        # # Office Blind 100%
+        # - button: 
+        #     height: $button_height
+        #     width: $button_widthß
+        #     checkable: true
+        #     id: office_blind_open_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           text: $blinds_open
+        #       - label:
+        #           align: bottom_left
+        #           text: "Open"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: cover.set_cover_position
+        #           data:
+        #             entity_id: cover.office_blind
+        #             position: "100"
+
+        # # Office Blind 66%
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: office_blind_66_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           text: $blinds_open
+        #       - label:
+        #           align: bottom_left
+        #           text: "Semi Open"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: cover.set_cover_position
+        #           data:
+        #             entity_id: cover.office_blind
+        #             position: "66"
+
+        # # Office Blind 33%
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: office_blind_33_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           text: $blinds_open
+        #       - label:
+        #           align: bottom_left
+        #           text: "Semi Closed"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: cover.set_cover_position
+        #           data:
+        #             entity_id: cover.office_blind
+        #             position: "33"
+
+        # # Office Blind 0%
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: office_blind_close_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           text: $blinds_closed
+        #       - label:
+        #           align: bottom_left
+        #           text: "Close"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: cover.set_cover_position
+        #           data:
+        #             entity_id: cover.office_blind
+        #             position: "0"
+
+
+        # # 3d Printer
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: printer_power_button
+        #     styles: control
+        #     widgets:
+        #       # Icon (shown when OFF)
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: printer_power_icon
+        #           text: $printer
+        #       # Progress (shown when ON)
+        #       - obj:
+        #           align: top_left
+        #           id: print_progress_container
+        #           height: SIZE_CONTENT
+        #           width: SIZE_CONTENT
+        #           clickable: false
+        #           layout:
+        #             type: flex
+        #             flex_flow: row
+        #             flex_align_cross: end
+        #           bg_opa: TRANSP
+        #           border_width: 0
+        #           pad_all: 0
+        #           hidden: true
+        #           widgets:
+        #             - label:
+        #                 text_font: statistics_font
+        #                 text_color: $button_text_color
+        #                 id: print_progress_label
+        #                 text: "--"
+        #             - label:
+        #                 text_font: label_font
+        #                 text_color: $button_text_color
+        #                 text: "%"
+        #                 pad_bottom: 6
+        #       - label:
+        #           align: bottom_left
+        #           text: "Printer"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: switch.toggle
+        #           data:
+        #             entity_id: switch.office_3d_printer_power
+
+        # # Filament Heater
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: filament_heater_button
+        #     styles: control
+        #     widgets:
+        #       # Icon (shown when OFF)
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: filament_heater_icon
+        #           text: $filament
+        #       # Humidity (shown when ON)
+        #       - obj:
+        #           align: top_left
+        #           id: dryer_humidity_container
+        #           height: SIZE_CONTENT
+        #           width: SIZE_CONTENT
+        #           clickable: false
+        #           layout:
+        #             type: flex
+        #             flex_flow: row
+        #             flex_align_cross: end
+        #           bg_opa: TRANSP
+        #           border_width: 0
+        #           pad_all: 0
+        #           hidden: true
+        #           widgets:
+        #             - label:
+        #                 text_font: statistics_font
+        #                 text_color: $button_text_color
+        #                 id: dryer_humidity_label
+        #                 text: "--"
+        #             - label:
+        #                 text_font: label_font
+        #                 text_color: $button_text_color
+        #                 text: "%"
+        #                 pad_bottom: 6
+        #                 pad_left: -4
+        #       - label:
+        #           align: bottom_left
+        #           text: "Dryer"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: switch.toggle
+        #           data:
+        #             entity_id: switch.office_filament_heater_893b
+
+        # # Office Aircon
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: office_aircon_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           text: $aircon
+        #       - label:
+        #           align: bottom_left
+        #           text: "Aircon"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: script.office_air_conditioner
+
+        # # Battery Charger
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: battery_charger_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: battery_charger_icon
+        #           text: $battery
+        #       - label:
+        #           align: bottom_left
+        #           id: battery_charger_label
+        #           text: "Charger"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: switch.toggle
+        #           data:
+        #             entity_id: switch.battery_charger
+
+        # # Storage Lights
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: storage_lights_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: storage_lights_icon
+        #           text: $package
+        #       - label:
+        #           align: bottom_left
+        #           id: storage_lights_label
+        #           text: "Storage"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: light.toggle
+        #           data:
+        #             entity_id: light.office_storage
+
+        # # Network Rack
+        # - button: 
+        #     height: $button_height
+        #     width: $button_width
+        #     checkable: true
+        #     id: network_rack_button
+        #     styles: control
+        #     widgets:
+        #       - label:
+        #           text_font: $icon_font
+        #           align: top_left
+        #           id: network_rack_icon
+        #           text: $network
+        #       - label:
+        #           align: bottom_left
+        #           id: network_rack_label
+        #           text: "Network Rack"
+        #     on_click:
+        #       - homeassistant.service:
+        #           service: light.toggle
+        #           data:
+        #             entity_id: light.office_network_rack
+
+
+
+
+
+
+ß
+# sensor:
+
+#   # Header Outdoor Temperate
+#   - platform: homeassistant
+#     entity_id: sensor.office_temperature
+#     id: office_temperature
+#     on_value:
+#       - lvgl.label.update:
+#           id: temperatures
+#           text:
+#             format: "%d° / %d°"
+#             args: [ '(int)round(id(outdoor_temperature).state)', '(int)round(x)' ]
+
+#   - platform: homeassistant
+#     entity_id: sensor.outdoor_temperature
+#     id: outdoor_temperature
+#     on_value:
+#       - lvgl.label.update:
+#           id: temperatures
+#           text:
+#             format: "%d° / %d°"
+#             args: [ '(int)round(x)', '(int)round(id(office_temperature).state)' ]
+
+#   # Office Blind Position
+#   - platform: homeassistant
+#     entity_id: cover.office_blind
+#     id: office_blind_position
+#     attribute: current_position
+
+#   # Centauri Carbon Print Progress
+#   - platform: homeassistant
+#     entity_id: sensor.centauri_carbon_percent_complete_helper
+#     id: centauri_carbon_percent
+#     on_value:
+#       - lvgl.label.update:
+#           id: print_progress_label
+#           text:
+#             format: "%.0f"
+#             args: [ 'x' ]
+
+#   # Filament Heater Humidity
+#   - platform: homeassistant
+#     entity_id: sensor.office_filament_heater_sensor_humidity
+#     id: filament_heater_humidity
+#     on_value:
+#       - lvgl.label.update:
+#           id: dryer_humidity_label
+#           text:
+#             format: "%.0f"
+#             args: [ 'x' ]
+
+
+
+# binary_sensor:
+  # # Office Dimmed Scene
+  # - platform: homeassistant
+  #   id: office_scene_dimmed
+  #   entity_id: switch.office_dimmed_stateful_scene
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_scene_dimmed_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # Office Calls Scene
+  # # Office Features Scene
+  # - platform: homeassistant
+  #   id: office_scene_features
+  #   entity_id: switch.office_features_stateful_scene
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_scene_features_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # 3d Printer
+  # - platform: homeassistant
+  #   id: office_3d_printer_power
+  #   entity_id: switch.office_3d_printer_power
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       - lvgl.widget.update:
+  #           id: printer_power_button
+  #           state:
+  #             checked: !lambda return x;
+  #       - lvgl.widget.update:
+  #           id: printer_power_icon
+  #           hidden: !lambda return x;
+  #       - lvgl.widget.update:
+  #           id: print_progress_container
+  #           hidden: !lambda return !x;
+
+  # # Office Aircon
+  # - platform: homeassistant
+  #   id: office_air_conditioner
+  #   entity_id: switch.office_air_conditioner
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_aircon_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Battery Charger
+  # - platform: homeassistant
+  #   id: office_battery_charger
+  #   entity_id: switch.battery_charger
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: battery_charger_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Filament Heater 
+  # - platform: homeassistant
+  #   id: office_filament_heater
+  #   entity_id: switch.office_filament_heater_893b
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       - lvgl.widget.update:
+  #           id: filament_heater_button
+  #           state:
+  #             checked: !lambda return x;
+  #       - lvgl.widget.update:
+  #           id: filament_heater_icon
+  #           hidden: !lambda return x;
+  #       - lvgl.widget.update:
+  #           id: dryer_humidity_container
+  #           hidden: !lambda return !x;
+
+  # # Office Blind 100% (Open)
+  # - platform: template
+  #   id: office_blind_100
+  #   lambda: |-
+  #     if (id(office_blind_position).has_state()) {
+  #       return abs(id(office_blind_position).state - 100) <= 3;
+  #     }
+  #     return false;
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_blind_open_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Office Blind 66% (Semi Open)
+  # - platform: template
+  #   id: office_blind_66
+  #   lambda: |-
+  #     if (id(office_blind_position).has_state()) {
+  #       return abs(id(office_blind_position).state - 66) <= 3;
+  #     }
+  #     return false;
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_blind_66_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Office Blind 33% (Semi Closed)
+  # - platform: template
+  #   id: office_blind_33
+  #   lambda: |-
+  #     if (id(office_blind_position).has_state()) {
+  #       return abs(id(office_blind_position).state - 33) <= 3;
+  #     }
+  #     return false;
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_blind_33_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Office Blind 0% (Close)
+  # - platform: template
+  #   id: office_blind_0
+  #   lambda: |-
+  #     if (id(office_blind_position).has_state()) {
+  #       return abs(id(office_blind_position).state - 0) <= 3;
+  #     }
+  #     return false;
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: office_blind_close_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Office Storage Lights
+  # - platform: homeassistant
+  #   id: office_storage_lights
+  #   entity_id: light.office_storage
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: storage_lights_button
+  #         state:
+  #           checked: !lambda return x;
+
+  # # Network Rack
+  # - platform: homeassistant
+  #   id: network_rack
+  #   entity_id: light.office_network_rack
+  #   trigger_on_initial_state: true
+  #   on_state:
+  #     then:
+  #       lvgl.widget.update:
+  #         id: network_rack_button
+  #         state:
+  #           checked: !lambda return x;

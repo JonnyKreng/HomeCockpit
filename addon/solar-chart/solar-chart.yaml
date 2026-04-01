@@ -1,12 +1,12 @@
 esphome:
   includes:
-    - addon/solar-chart.h
-    - addon/theme.h
+    - addon/solar-chart/solar-chart.h
+    - addon/script-extensions/theme.h
   on_boot:
     then:
       - delay: 1sec
       - lambda: |-
-            draw_chart(id(overview_tab)/*.obj*/);
+            draw_chart(id(overview_tab));
 
 globals:
   # Define a global variable as a vector with type float.
