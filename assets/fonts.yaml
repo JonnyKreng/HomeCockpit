@@ -6,6 +6,11 @@ font:
     bpp: 4
 
   - file: "gfonts://Roboto"
+    id: big_label_font
+    size: 34
+    bpp: 4
+
+  - file: "gfonts://Roboto"
     id: label_font
     size: 22
     bpp: 4

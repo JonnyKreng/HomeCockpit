@@ -23,6 +23,31 @@ font:
       "\U000F07DE",  # mdi-filament
       "\U000F0317",  # mdi-lan
       "\U000F1A73",  # mdi-solar-panel-large
+      "\U000F02DC"   # mdi-home
+      ]
+
+  - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
+    id: icon_font_34
+    size: 34
+    bpp: 8
+    glyphs: [
+      "\U000F0335",  # mdi-lightbulb
+      "\U000F042B",  # mdi-printer-3d
+      "\U000F0D43",  # mdi-air-filter
+      "\U000F1051",  # mdi-led-strip-variant
+      "\U000F03D7",  # mdi-package-variant-closed
+      "\U000F07D6",  # mdi-led-strip
+      "\U000F00AC",  # mdi-blinds-closed
+      "\U000F1011",  # mdi-blinds-open
+      "\U000F1A4C",  # mdi-lightbulb-night
+      "\U000F1087",  # mdi-router-network
+      "\U000F036B",  # mdi-message-video
+      "\U000F0614",  # mdi-application-outline
+      "\U000F089E",  # mdi-battery
+      "\U000F07DE",  # mdi-filament
+      "\U000F0317",  # mdi-lan
+      "\U000F1A73",  # mdi-solar-panel-large
+      "\U000F02DC"   # mdi-home
       ]
 
 # Map icons to names
@@ -44,4 +69,5 @@ substitutions:
   filament:       "\U000F07DE"
   lan:            "\U000F0317"
   solar_power_icon: "\U000F1A73"
+  home_icon:      "\U000F02DC"
 

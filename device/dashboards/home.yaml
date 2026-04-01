@@ -1,4 +1,4 @@
-name: Home
+name: $home_icon
 id: overview_tab
 layout: 
   type: flex
@@ -6,28 +6,13 @@ layout:
   pad_row: 10
   pad_column: 10
 width: 100%
+height: 100%
 bg_color: $background_color
 bg_opa: cover
+pad_all: 0
+pad_top: 10
 
 widgets:
-  # Solar Power
-  - obj:
-      id: solar_power_widget
-      styles: widget_half
-      scrollbar_mode: "off"
-      widgets:
-        - label:
-            text_font: $icon_font
-            align: left_mid
-            text: $solar_power_icon
-            text_color: $text_color
-        - label:
-            id: solar_power_label
-            align: right_mid
-            text: "-- W"
-            text_font: label_font
-            text_color: $text_color
-
   # Office Calls Scene
   - button:
       height: $button_height
@@ -91,3 +76,39 @@ widgets:
             service: switch.toggle
             data:
               entity_id: switch.office_evening_stateful_scene
+
+
+  # Solar Power
+  - obj:
+      id: solar_power_widget
+      styles: widget_half
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: left_mid
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_power_label
+            align: right_mid
+            text: "-- W"
+            text_font: big_label_font
+            text_color: $text_color
+
+  - obj:
+      id: solar_power_widget1
+      styles: widget_half
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: left_mid
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_power_label1
+            align: right_mid
+            text: "-- W"
+            text_font: big_label_font
+            text_color: $text_color

@@ -36,8 +36,8 @@ static void DrawCallbackEvent(lv_event_t* e)
 
 static void draw_chart(lv_obj_t * parent = NULL)
 {
-  const u_int X_HEIGHT = 410;
-  const u_int Y_HEIGHT = 270;
+  const u_int X_HEIGHT = 398;
+  const u_int Y_HEIGHT = 324;
 
   const u_int MAX_X_POINTS = 288;       // Number of data points (288 x 5-min = 24 hours)
   const u_int MAX_POWER_WATTS = 800;    // Solar panel max power in watts
