@@ -15,6 +15,17 @@ lvgl:
           text_align: center
           text_color: $text_color
 
+      # Status icon — update text/text_color from any addon, show/hide as needed
+      - label:
+          text: $car_electric
+          id: top_status_icon
+          hidden: true
+          text_font: icon_font_20
+          align: top_left
+          x: 8
+          y: 8
+          text_color: $text_color
+
       - label:
           text: "\uF1EB"
           id: connection_status
@@ -59,4 +70,5 @@ lvgl:
             tabs:
               - <<: !include dashboards/home.yaml
               - <<: !include dashboards/solar.yaml
+              - <<: !include dashboards/car.yaml
               

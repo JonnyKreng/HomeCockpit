@@ -23,6 +23,7 @@ esphome:
     build_flags:
       - -D LV_USE_CHART=1
   on_boot:
+    then:
       - script.execute: inactivity_timer
   
 # Secondary ESP32-C6 device for connectivity
@@ -130,11 +131,13 @@ script:
           condition:
             light.is_off: display_backlight
           then:
-            #- light.turn_on:
-            #    id: display_backlight
             - lvgl.resume:
-      - delay: 5s
-      #- light.turn_off:
-      #    id: display_backlight
+            - delay: 50ms
+            - light.turn_on:
+                id: display_backlight
+      - delay: 60s
+      - light.turn_off:
+          id: display_backlight
+      - delay: 100ms
       - lvgl.pause:
           show_snow: true

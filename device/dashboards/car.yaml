@@ -1,0 +1,150 @@
+name: $car_icon
+id: car_tab
+layout:
+  type: flex
+  flex_flow: row_wrap
+  pad_row: 10
+  pad_column: 10
+width: 100%
+height: 100%
+bg_color: $background_color
+bg_opa: cover
+pad_all: 0
+pad_top: 10
+
+widgets:
+
+  # Charge Target Slider
+  - obj:
+      id: charge_slider_widget
+      styles: widget_double_width
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $car_icon
+            text_color: $text_color
+        - label:
+            id: charge_target_label
+            align: top_right
+            text: "10 kWh\n20 %"
+            text_font: label_font
+            text_color: $text_color
+        - slider:
+            id: charge_target_slider
+            align: bottom_mid
+            width: 90%
+            min_value: 1
+            max_value: 50
+            value: 10
+            on_value:
+              - lambda: |-
+                  char buf[20];
+                  snprintf(buf, sizeof(buf), "%d kWh\n%d %%", (int)x, x > 0 ? (int)(x / 50.0f * 100) : 0);
+                  lv_label_set_text(id(charge_target_label), buf);
+              - if:
+                  condition:
+                    lambda: return id(charging_active);
+                  then:
+                    - globals.set:
+                        id: charging_active
+                        value: 'false'
+                    - homeassistant.service:
+                        service: switch.turn_off
+                        data:
+                          entity_id: switch.steckdose_nr_4
+                    - lvgl.widget.update:
+                        id: charge_button
+                        state:
+                          checked: false
+                    - lambda: |-
+                        lv_label_set_text(id(charge_session_icon), "\U000F0079");
+                        lv_label_set_text(id(charge_button_label), "Laden starten");
+                        lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+
+  # Charge Button
+  - button:
+      id: charge_button
+      checkable: true
+      styles: control
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: "\U000F05F1"
+            text_color: $text_color
+        - label:
+            id: charge_button_label
+            align: bottom_left
+            text: "Laden starten"
+            text_color: $text_color
+      on_click:
+        - if:
+            condition:
+              lambda: return lv_obj_has_state(id(charge_button), LV_STATE_CHECKED);
+            then:
+              - lambda: |-
+                  id(charge_start_kwh) = id(charger_kwh).state;
+                  id(charging_active) = true;
+                  lv_label_set_text(id(charge_button_label), "Laden stoppen");
+                  lv_label_set_text(id(top_status_icon), "\U000F05F1");
+                  lv_obj_set_style_text_color(id(top_status_icon), lv_color_hex(0xFFD700), LV_PART_MAIN);
+                  lv_obj_clear_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+              - homeassistant.service:
+                  service: switch.turn_on
+                  data:
+                    entity_id: switch.steckdose_nr_4
+            else:
+              - lambda: |-
+                  id(charging_active) = false;
+                  lv_label_set_text(id(charge_session_icon), "\U000F0079");
+                  lv_label_set_text(id(charge_button_label), "Laden starten");
+                  lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+              - homeassistant.service:
+                  service: switch.turn_off
+                  data:
+                    entity_id: switch.steckdose_nr_4
+
+  # Charge Power
+  - obj:
+      id: charge_power_widget
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $flash
+            text_color: $text_color
+        - label:
+            id: charge_power_label
+            x: 0
+            y: 70
+            text: "-- W"
+            text_font: statistics_font
+            text_color: $text_color
+
+  # Session kWh
+  - obj:
+      id: charge_session_widget
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            id: charge_session_icon
+            text_font: $icon_font
+            align: top_left
+            text: "\U000F0079"
+            text_color: $text_color
+        - label:
+            id: charge_session_pct_label
+            align: top_right
+            text: "--%"
+            text_font: label_font
+            text_color: $text_color
+        - label:
+            id: charge_session_label
+            x: 0
+            y: 70
+            text: "-- kWh"
+            text_font: statistics_font
+            text_color: $text_color

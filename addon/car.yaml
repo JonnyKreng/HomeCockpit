@@ -1,0 +1,91 @@
+globals:
+  - id: charging_active
+    type: bool
+    initial_value: 'false'
+  - id: charge_start_kwh
+    type: float
+    initial_value: '0.0'
+
+sensor:
+  - platform: homeassistant
+    entity_id: sensor.steckdose_nr_4_power
+    id: charger_power
+    on_value:
+      lambda: |-
+        char buf[10];
+        snprintf(buf, sizeof(buf), "%.0f W", x);
+        lv_label_set_text(id(charge_power_label), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.steckdose_nr_4_summation_delivered
+    id: charger_kwh
+    on_value:
+      - lambda: |-
+          float charged = id(charging_active) ? x - id(charge_start_kwh) : 0;
+          if (charged < 0) charged = 0;
+          // Update kWh labels
+          char buf[12];
+          snprintf(buf, sizeof(buf), "%.1f kWh", charged);
+          lv_label_set_text(id(charge_session_label), buf);
+          lv_label_set_text(id(home_charge_session_label), buf);
+          // Update % labels
+          float target = lv_slider_get_value(id(charge_target_slider));
+          int pct_int = (target > 0 && id(charging_active)) ? (int)(charged / target * 100.0f) : 0;
+          char pct_buf[6];
+          snprintf(pct_buf, sizeof(pct_buf), "%d%%", pct_int);
+          lv_label_set_text(id(charge_session_pct_label), pct_buf);
+          lv_label_set_text(id(home_charge_session_pct_label), pct_buf);
+          // Update battery charging icon
+          float pct = (target > 0 && id(charging_active)) ? (float)pct_int : -1;
+          const char* icon;
+          if      (pct <  0)  icon = "\U000F0079";  // battery (not charging)
+          else if (pct < 10)  icon = "\U000F089C";  // battery_charging_10
+          else if (pct < 20)  icon = "\U000F0086";  // battery_charging_20
+          else if (pct < 30)  icon = "\U000F0087";  // battery_charging_30
+          else if (pct < 40)  icon = "\U000F0088";  // battery_charging_40
+          else if (pct < 50)  icon = "\U000F089D";  // battery_charging_50
+          else if (pct < 60)  icon = "\U000F0089";  // battery_charging_60
+          else if (pct < 70)  icon = "\U000F089E";  // battery_charging_70
+          else if (pct < 80)  icon = "\U000F008A";  // battery_charging_80
+          else if (pct < 90)  icon = "\U000F008B";  // battery_charging_90
+          else                icon = "\U000F0085";  // battery_charging_100
+          lv_label_set_text(id(charge_session_icon), icon);
+          lv_label_set_text(id(home_charge_session_icon), icon);
+      - if:
+          condition:
+            lambda: |-
+              if (!id(charging_active)) return false;
+              float charged = x - id(charge_start_kwh);
+              float target = lv_slider_get_value(id(charge_target_slider));
+              return charged >= target;
+          then:
+            - lambda: |-
+                id(charging_active) = false;
+                lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
+                lv_label_set_text(id(charge_session_icon), "\U000F0079");
+                lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
+                lv_label_set_text(id(charge_session_pct_label), "--%");
+                lv_label_set_text(id(home_charge_session_pct_label), "--%");
+                lv_label_set_text(id(charge_button_label), "Laden starten");
+                lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+            - homeassistant.service:
+                service: switch.turn_off
+                data:
+                  entity_id: switch.steckdose_nr_4
+
+switch:
+  - platform: homeassistant
+    entity_id: switch.steckdose_nr_4
+    id: charger_switch
+    on_state:
+      lambda: |-
+        if (!x) {
+          id(charging_active) = false;
+          lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
+          lv_label_set_text(id(charge_session_icon), "\U000F0079");
+          lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
+          lv_label_set_text(id(charge_session_pct_label), "--%");
+          lv_label_set_text(id(home_charge_session_pct_label), "--%");
+          lv_label_set_text(id(charge_button_label), "Laden starten");
+          lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+        }

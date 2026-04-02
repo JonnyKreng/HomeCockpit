@@ -13,3 +13,4 @@ packages:
   chart: !include addon/solar-chart/solar-chart.yaml
   weather: !include addon/weather.yaml
   people: !include addon/people.yaml
+  car: !include addon/car.yaml
