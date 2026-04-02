@@ -132,7 +132,6 @@ script:
             light.is_off: display_backlight
           then:
             - lvgl.resume:
-            - delay: 50ms
             - light.turn_on:
                 id: display_backlight
       - delay: 60s

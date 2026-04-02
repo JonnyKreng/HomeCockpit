@@ -61,26 +61,11 @@ widgets:
             pad_all: 0
             width: 80px
             height: 129px
-            layout:
-              type: flex
-              flex_flow: column
-              flex_align_cross: center
-              flex_align_main: center
             widgets:
               - label:
                   id: person_jonny_icon
                   text_font: $icon_font
                   text: $male_icon
-                  text_color: $text_color
-              - label:
-                  id: person_jonny_home_time
-                  text: "--:--"
-                  text_font: clockbar_font
-                  text_color: $text_color
-              - label:
-                  id: person_jonny_away_time
-                  text: "--:--"
-                  text_font: clockbar_font
                   text_color: $text_color
         - obj:
             bg_opa: transp
@@ -88,26 +73,11 @@ widgets:
             pad_all: 0
             width: 80px
             height: 129px
-            layout:
-              type: flex
-              flex_flow: column
-              flex_align_cross: center
-              flex_align_main: center
             widgets:
               - label:
                   id: person_saskia_icon
                   text_font: $icon_font
                   text: $female_icon
-                  text_color: $text_color
-              - label:
-                  id: person_saskia_home_time
-                  text: "--:--"
-                  text_font: clockbar_font
-                  text_color: $text_color
-              - label:
-                  id: person_saskia_away_time
-                  text: "--:--"
-                  text_font: clockbar_font
                   text_color: $text_color
 
   # Solar Power      [col 3, row 0]
