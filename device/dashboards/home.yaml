@@ -1,8 +1,9 @@
 name: $home_icon
 id: overview_tab
-layout: 
-  type: flex
-  flex_flow: row_wrap
+layout:
+  type: grid
+  grid_columns: [194, 194, 194, 194, 194]
+  grid_rows: [157, 157, 157]
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -13,9 +14,14 @@ pad_all: 0
 pad_top: 10
 
 widgets:
-  # Current Weather
+
+  # ── Row 0 ──────────────────────────────────────────────────────────────────
+
+  # Current Weather  [col 0, row 0]
   - obj:
       id: current_weather_widget
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 0
       widgets:
         - label:
             id: current_weather_icon
@@ -31,35 +37,84 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
+  # Spacer            [col 1, row 0]
   - obj:
       styles: placeholder_widget
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 0
 
+  # People at home   [col 2, row 0]
   - obj:
       id: people_at_home_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 0
       scrollbar_mode: "off"
-      align: center
       layout:
         type: flex
         flex_flow: row
         flex_align_main: space_around
         flex_align_cross: center
       widgets:
-        - label:
-            id: person_jonny_icon
-            text_font: $icon_font
-            align: center
-            text: $male_icon
-            text_color: $text_color
-        - label:
-            id: person_saskia_icon
-            text_font: $icon_font
-            align: center
-            text: $female_icon
-            text_color: $text_color
+        - obj:
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0
+            width: 80px
+            height: 129px
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  id: person_jonny_icon
+                  text_font: $icon_font
+                  text: $male_icon
+                  text_color: $text_color
+              - label:
+                  id: person_jonny_home_time
+                  text: "--:--"
+                  text_font: clockbar_font
+                  text_color: $text_color
+              - label:
+                  id: person_jonny_away_time
+                  text: "--:--"
+                  text_font: clockbar_font
+                  text_color: $text_color
+        - obj:
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0
+            width: 80px
+            height: 129px
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  id: person_saskia_icon
+                  text_font: $icon_font
+                  text: $female_icon
+                  text_color: $text_color
+              - label:
+                  id: person_saskia_home_time
+                  text: "--:--"
+                  text_font: clockbar_font
+                  text_color: $text_color
+              - label:
+                  id: person_saskia_away_time
+                  text: "--:--"
+                  text_font: clockbar_font
+                  text_color: $text_color
 
-  # Solar Power
+  # Solar Power      [col 3, row 0]
   - obj:
       id: solar_power_widget
+      grid_cell_column_pos: 3
+      grid_cell_row_pos: 0
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -75,8 +130,11 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
+  # Solar Delivered  [col 4, row 0]
   - obj:
       id: solar_delivered_widget
+      grid_cell_column_pos: 4
+      grid_cell_row_pos: 0
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -90,12 +148,16 @@ widgets:
             y: 70
             text: "-- kWh"
             text_font: statistics_font
-            text_color: $text_color     
+            text_color: $text_color
 
-  # Weather hourly forecast
+  # ── Row 1 ──────────────────────────────────────────────────────────────────
+
+  # Weather forecast [col 0-1, row 1]
   - obj:
       id: weather_widget
-      styles: widget_double_width
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 1
+      grid_cell_column_span: 2
       scrollbar_mode: "off"
       layout:
         type: flex
@@ -277,17 +339,30 @@ widgets:
                   text_font: label_font
                   text_color: $text_color
 
+  # Spacer            [col 2, row 1]
   - obj:
       styles: placeholder_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 1
+
+  # Chart anchor     [col 3-4, row 1-2]
   - obj:
       id: chart_ancor_widget
+      grid_cell_column_pos: 3
+      grid_cell_row_pos: 1
+      grid_cell_column_span: 2
+      grid_cell_row_span: 2
       pad_all: 0
       scrollbar_mode: "off"
       styles: placeholder_double
 
-# Car Session kWh
+  # ── Row 2 ──────────────────────────────────────────────────────────────────
+
+  # Car Session kWh  [col 0, row 2]
   - obj:
       id: home_charge_session_widget
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 2
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -309,3 +384,15 @@ widgets:
             text: "-- kWh"
             text_font: statistics_font
             text_color: $text_color
+
+  # Spacer            [col 1, row 2]
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 2
+
+  # Spacer            [col 2, row 2]
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 2

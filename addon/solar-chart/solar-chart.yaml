@@ -7,7 +7,7 @@ esphome:
       - delay: 1sec
       - lambda: |-
             draw_chart(id(chart_ancor_widget));
-            draw_chart(id(solar_tab));
+            draw_chart(id(solar_chart_anchor));
   platformio_options:
     build_flags:
       - -D LV_USE_CHART=1

@@ -1,8 +1,9 @@
 name: $car_icon
 id: car_tab
 layout:
-  type: flex
-  flex_flow: row_wrap
+  type: grid
+  grid_columns: [194, 194, 194]
+  grid_rows: [157, 157]
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -14,10 +15,14 @@ pad_top: 10
 
 widgets:
 
-  # Charge Target Slider
+  # ── Row 0 ──────────────────────────────────────────────────────────────────
+
+  # Charge Target Slider  [col 0-1, row 0]
   - obj:
       id: charge_slider_widget
-      styles: widget_double_width
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 0
+      grid_cell_column_span: 2
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -63,9 +68,11 @@ widgets:
                         lv_label_set_text(id(charge_button_label), "Laden starten");
                         lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
 
-  # Charge Button
+  # Charge Button    [col 2, row 0]
   - button:
       id: charge_button
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 0
       checkable: true
       styles: control
       widgets:
@@ -106,15 +113,19 @@ widgets:
                   data:
                     entity_id: switch.steckdose_nr_4
 
-  # Charge Power
+  # ── Row 1 ──────────────────────────────────────────────────────────────────
+
+  # Charge Power     [col 0, row 1]
   - obj:
       id: charge_power_widget
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 1
       scrollbar_mode: "off"
       widgets:
         - label:
             text_font: $icon_font
             align: top_left
-            text: $flash
+            text: $lightning_icon
             text_color: $text_color
         - label:
             id: charge_power_label
@@ -124,9 +135,11 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
-  # Session kWh
+  # Session kWh      [col 1, row 1]
   - obj:
       id: charge_session_widget
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 1
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -148,3 +161,9 @@ widgets:
             text: "-- kWh"
             text_font: statistics_font
             text_color: $text_color
+
+  # Spacer           [col 2, row 1]
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 1

@@ -1,8 +1,9 @@
 name: $solart_panel_icon
 id: solar_tab
-layout: 
-  type: flex
-  flex_flow: row_wrap
+layout:
+  type: grid
+  grid_columns: [194, 194, 194, 194, 194]
+  grid_rows: [157, 324]
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -13,9 +14,14 @@ pad_all: 0
 pad_top: 10
 
 widgets:
-  # Solar Power
+
+  # ── Row 0 ──────────────────────────────────────────────────────────────────
+
+  # Solar Power      [col 0, row 0]
   - obj:
       id: solar_power_widget_solar_tab
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 0
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -31,8 +37,11 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
+  # Solar Delivered  [col 1, row 0]
   - obj:
       id: solar_delivered_widget_solar_tab
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 0
       scrollbar_mode: "off"
       widgets:
         - label:
@@ -48,10 +57,42 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
+  # Spacers          [col 2-4, row 0]
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 0
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 3
+      grid_cell_row_pos: 0
+  - obj:
+      styles: placeholder_widget
+      grid_cell_column_pos: 4
+      grid_cell_row_pos: 0
 
+  # ── Row 1 ──────────────────────────────────────────────────────────────────
+
+  # Chart anchor     [col 0-1, row 1]
+  - obj:
+      id: solar_chart_anchor
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 1
+      grid_cell_column_span: 2
+      pad_all: 0
+      scrollbar_mode: "off"
+      styles: placeholder_double
+
+  # Spacers          [col 2-4, row 1]
   - obj:
       styles: placeholder_widget
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 1
   - obj:
       styles: placeholder_widget
+      grid_cell_column_pos: 3
+      grid_cell_row_pos: 1
   - obj:
       styles: placeholder_widget
+      grid_cell_column_pos: 4
+      grid_cell_row_pos: 1

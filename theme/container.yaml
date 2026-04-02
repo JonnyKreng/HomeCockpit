@@ -47,3 +47,5 @@ lvgl:
       border_width: 0
       text_color: $text_color
       scrollbar_mode: "off"
+      grid_cell_x_align: stretch
+      grid_cell_y_align: stretch
