@@ -32,10 +32,23 @@ sensor:
     entity_category: "diagnostic"
     device_class: ""
 
-
 text_sensor:
 # Ip Address
   - platform: wifi_info
     ip_address:
       name: IP Address
       icon: mdi:ip-network
+
+api:
+  on_client_connected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.show: connection_status
+  on_client_disconnected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.hide: connection_status

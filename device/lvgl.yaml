@@ -17,11 +17,11 @@ lvgl:
 
       - label:
           text: "\uF1EB"
-          id: lbl_hastatus
+          id: connection_status
           hidden: true
           align: top_right
-          x: -2
-          y: 7
+          x: -3
+          y: 8
           text_align: right
           text_color: $text_color
           
