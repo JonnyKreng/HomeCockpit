@@ -36,7 +36,10 @@ font:
       "\U000F0598",  # mdi-weather-snowy
       "\U000F067F",  # mdi-weather-snowy-rainy
       "\U000F0599",  # mdi-weather-sunny
-      "\U000F059D"   # mdi-weather-windy
+      "\U000F059D",  # mdi-weather-windy
+      "\U000F0D9B",  # mdi-solar-panel
+      "\U000F064D",  # mdi-account (male/person)
+      "\U000F0649"   # mdi-account-woman (female/person)
       ]
 
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
@@ -73,7 +76,10 @@ font:
       "\U000F0598",  # mdi-weather-snowy
       "\U000F067F",  # mdi-weather-snowy-rainy
       "\U000F0599",  # mdi-weather-sunny
-      "\U000F059D"   # mdi-weather-windy
+      "\U000F059D",  # mdi-weather-windy
+      "\U000F0D9B",  # mdi-solar-panel
+      "\U000F064D",  # mdi-account (male/person)
+      "\U000F0649"   # mdi-account-woman (female/person)
       ]
 
 # Map icons to names
@@ -96,4 +102,7 @@ substitutions:
   lan:            "\U000F0317"
   solar_power_icon: "\U000F1A73"
   home_icon:      "\U000F02DC"
+  solart_panel_icon: "\U000F0D9B"
+  male_icon:      "\U000F064D"
+  female_icon:    "\U000F0649"
 

@@ -1,8 +1,8 @@
-name: $solar_power_icon
+name: $solart_panel_icon
 id: solar_tab
 layout: 
   type: flex
-  flex_flow: column_wrap
+  flex_flow: row_wrap
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -13,19 +13,45 @@ pad_all: 0
 pad_top: 10
 
 widgets:
-  - button: 
-        height: $button_height
-        width: $button_width
-        checkable: true
-        id: office_scene_evening_button2
-        styles: control
-        widgets:
-          - label:
-              text_font: $icon_font
-              align: top_left
-              id: office_scene_evening_icon2         
-              text: $nightlight
-          - label:
-              align: bottom_left
-              id: office_scene_evening_label2
-              text: "Evening"
+  # Solar Power
+  - obj:
+      id: solar_power_widget_solar_tab
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_power_label_solar_tab
+            x: 0
+            y: 70
+            text: "-- W"
+            text_font: statistics_font
+            text_color: $text_color
+
+  - obj:
+      id: solar_delivered_widget_solar_tab
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_delivered_label_solar_tab
+            x: 0
+            y: 70
+            text: "-- kWh"
+            text_font: statistics_font
+            text_color: $text_color
+
+
+  - obj:
+      styles: placeholder_widget
+  - obj:
+      styles: placeholder_widget
+  - obj:
+      styles: placeholder_widget

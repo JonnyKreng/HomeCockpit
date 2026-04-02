@@ -1,0 +1,16 @@
+text_sensor:
+  - platform: homeassistant
+    entity_id: person.jonny
+    id: person_jonny_state
+    on_value:
+      lambda: |-
+        lv_color_t color = x == "home" ? lv_color_hex(0x00C853) : lv_color_hex(0x616161);
+        lv_obj_set_style_text_color(id(person_jonny_icon), color, LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: person.saskia
+    id: person_saskia_state
+    on_value:
+      lambda: |-
+        lv_color_t color = x == "home" ? lv_color_hex(0x00C853) : lv_color_hex(0x616161);
+        lv_obj_set_style_text_color(id(person_saskia_icon), color, LV_PART_MAIN);

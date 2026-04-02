@@ -89,9 +89,9 @@ static void draw_chart(lv_obj_t * parent = NULL)
   ser = lv_chart_add_series(chart, lv_palette_main(LV_PALETTE_ORANGE), LV_CHART_AXIS_PRIMARY_Y);
 
   // Initialize chart with zeros
-  for(u_int i = MAX_X_POINTS; i > 0; i--) {
-     lv_chart_set_next_value(chart, ser, 0);
-  }
+  //for(u_int i = MAX_X_POINTS; i > 0; i--) {
+  //   lv_chart_set_next_value(chart, ser, 0);
+  //}
 }          
 
 static void update_chart(float value)

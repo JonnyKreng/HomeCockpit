@@ -18,6 +18,23 @@ lvgl:
       height: $widget_height_double
       width: $widget_width_tripple
 
+
+    - id: placeholder_widget
+      bg_opa: transp
+
+    - id: placeholder_double_height
+      bg_opa: transp
+      height: $widget_height_double
+
+    - id: placeholder_double_width
+      bg_opa: transp
+      width: $widget_width_double
+
+    - id: placeholder_double
+      bg_opa: transp
+      height: $widget_height_double
+      width: $widget_width_double
+
   theme:
     obj:
       bg_color: $primary_color

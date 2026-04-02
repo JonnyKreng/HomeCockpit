@@ -2,7 +2,7 @@ name: $home_icon
 id: overview_tab
 layout: 
   type: flex
-  flex_flow: column_wrap
+  flex_flow: row_wrap
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -13,89 +13,6 @@ pad_all: 0
 pad_top: 10
 
 widgets:
-#   # Office Calls Scene
-#   - button:
-#       height: $button_height
-#       width: $button_width
-#       checkable: true
-#       id: office_scene_calls_button2
-#       styles: control
-#       widgets:
-#         - label:
-#             text_font: $icon_font
-#             align: top_left
-#             id: office_scene_calls_icon2              
-#             text: $videocall
-#         - label:
-#             align: bottom_left
-#             id: office_scene_calls_label2
-#             text: "Calls"
-
-#   # Office Calls Scene
-#   - button: 
-#       height: $button_height
-#       width: $button_width
-#       checkable: true
-#       id: office_scene_calls_button
-#       styles: control
-#       widgets:
-#         - label:
-#             text_font: $icon_font
-#             align: top_left
-#             id: office_scene_calls_icon                
-#             text: $videocall
-#         - label:
-#             align: bottom_left
-#             id: office_scene_calls_label
-#             text: "Calls"
-#       on_press:
-#         - homeassistant.service:
-#             service: switch.toggle
-#             data:
-#               entity_id: switch.office_calls_stateful_scene
-
-#   # Office Evening Scene
-#   - button: 
-#       height: $button_height
-#       width: $button_width
-#       checkable: true
-#       id: office_scene_evening_button
-#       styles: control
-#       widgets:
-#         - label:
-#             text_font: $icon_font
-#             align: top_left
-#             id: office_scene_evening_icon                
-#             text: $nightlight
-#         - label:
-#             align: bottom_left
-#             id: office_scene_evening_label
-#             text: "Evening"
-#       on_press:
-#         - homeassistant.service:
-#             service: switch.toggle
-#             data:
-#               entity_id: switch.office_evening_stateful_scene
-
-
-  # Solar Power
-  - obj:
-      id: solar_power_widget
-      styles: widget_half
-      scrollbar_mode: "off"
-      widgets:
-        - label:
-            text_font: $icon_font
-            align: left_mid
-            text: $solar_power_icon
-            text_color: $text_color
-        - label:
-            id: solar_power_label
-            align: right_mid
-            text: "-- W"
-            text_font: big_label_font
-            text_color: $text_color
-
   # Current Weather
   - obj:
       id: current_weather_widget
@@ -108,16 +25,71 @@ widgets:
             text_color: $text_color
         - label:
             id: current_weather_temp_label
-            align: center
+            x: 0
+            y: 70
             text: "-- °C"
             text_font: statistics_font
             text_color: $text_color
+
+  - obj:
+      styles: placeholder_widget
+
+  - obj:
+      id: people_at_home_widget
+      scrollbar_mode: "off"
+      layout:
+        type: flex
+        flex_flow: row
+        flex_align_main: space_around
+        flex_align_cross: center
+      widgets:
         - label:
-            id: current_weather_condition_label
-            align: bottom_left
-            text: "--"
-            text_font: label_font
+            id: person_jonny_icon
+            text_font: $icon_font
+            align: center
+            text: $male_icon
             text_color: $text_color
+        - label:
+            id: person_saskia_icon
+            text_font: $icon_font
+            align: center
+            text: $female_icon
+            text_color: $text_color
+
+  # Solar Power
+  - obj:
+      id: solar_power_widget
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_power_label
+            x: 0
+            y: 70
+            text: "-- W"
+            text_font: statistics_font
+            text_color: $text_color
+
+  - obj:
+      id: solar_delivered_widget
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $solar_power_icon
+            text_color: $text_color
+        - label:
+            id: solar_delivered_label
+            x: 0
+            y: 70
+            text: "-- kWh"
+            text_font: statistics_font
+            text_color: $text_color     
 
   # Weather hourly forecast
   - obj:
@@ -303,3 +275,6 @@ widgets:
                   text: "-- °C"
                   text_font: label_font
                   text_color: $text_color
+
+  - obj:
+      styles: placeholder_widget
