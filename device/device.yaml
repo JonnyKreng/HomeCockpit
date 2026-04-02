@@ -103,6 +103,9 @@ touchscreen:
     i2c_id: bus_a
     reset_pin: GPIO22
     interrupt_pin: GPIO21
+    on_touch:
+      then:
+        - script.execute: inactivity_timer
 
 # Display
 display:
@@ -116,3 +119,17 @@ display:
     update_interval: never
     auto_clear_enabled: false
     hsync_pulse_width: 20     # The only difference to the examples provided
+
+script:
+  - id: inactivity_timer
+    mode: restart
+    then:
+      - if:
+          condition:
+            light.is_off: display_backlight
+          then:
+            - light.turn_on:
+                id: display_backlight
+      - delay: 50s
+      - light.turn_off:
+          id: display_backlight

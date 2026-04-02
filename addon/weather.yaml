@@ -1,0 +1,218 @@
+esphome:
+  includes:
+    - addon/script-extensions/theme.h
+    - addon/script-extensions/weather_colors.h
+
+text_sensor:
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_0600_condition
+    id: wx_cond_0600
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_0600), i);
+        lv_obj_set_style_text_color(id(wx_icon_0600), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_0900_condition
+    id: wx_cond_0900
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_0900), i);
+        lv_obj_set_style_text_color(id(wx_icon_0900), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1200_condition
+    id: wx_cond_1200
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_1200), i);
+        lv_obj_set_style_text_color(id(wx_icon_1200), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1500_condition
+    id: wx_cond_1500
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_1500), i);
+        lv_obj_set_style_text_color(id(wx_icon_1500), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1800_condition
+    id: wx_cond_1800
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_1800), i);
+        lv_obj_set_style_text_color(id(wx_icon_1800), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_2100_condition
+    id: wx_cond_2100
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(wx_icon_2100), i);
+        lv_obj_set_style_text_color(id(wx_icon_2100), weather_icon_color(x), LV_PART_MAIN);
+
+  - platform: homeassistant
+    entity_id: weather.forecast_home
+    id: current_weather_cond
+    on_value:
+      lambda: |-
+        const char* i = "\U000F0590";
+        if (x == "sunny") i = "\U000F0599";
+        else if (x == "clear-night") i = "\U000F0594";
+        else if (x == "partlycloudy") i = "\U000F0595";
+        else if (x == "rainy") i = "\U000F0597";
+        else if (x == "pouring") i = "\U000F0596";
+        else if (x == "snowy") i = "\U000F0598";
+        else if (x == "snowy-rainy") i = "\U000F067F";
+        else if (x == "lightning") i = "\U000F0593";
+        else if (x == "lightning-rainy") i = "\U000F067E";
+        else if (x == "fog") i = "\U000F0591";
+        else if (x == "windy") i = "\U000F059D";
+        else if (x == "hail") i = "\U000F0592";
+        lv_label_set_text(id(current_weather_icon), i);
+        lv_obj_set_style_text_color(id(current_weather_icon), weather_icon_color(x), LV_PART_MAIN);
+        lv_label_set_text(id(current_weather_condition_label), x.c_str());
+
+sensor:
+  - platform: homeassistant
+    entity_id: weather.forecast_home
+    attribute: temperature
+    id: current_weather_temp
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(current_weather_temp_label), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_0600
+    id: wx_temp_0600
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_0600), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_0900
+    id: wx_temp_0900
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_0900), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1200
+    id: wx_temp_1200
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_1200), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1500
+    id: wx_temp_1500
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_1500), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_1800
+    id: wx_temp_1800
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_1800), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.weather_forecast_hour_2100
+    id: wx_temp_2100
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(wx_temp_label_2100), buf);

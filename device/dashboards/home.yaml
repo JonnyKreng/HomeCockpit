@@ -13,69 +13,69 @@ pad_all: 0
 pad_top: 10
 
 widgets:
-  # Office Calls Scene
-  - button:
-      height: $button_height
-      width: $button_width
-      checkable: true
-      id: office_scene_calls_button2
-      styles: control
-      widgets:
-        - label:
-            text_font: $icon_font
-            align: top_left
-            id: office_scene_calls_icon2              
-            text: $videocall
-        - label:
-            align: bottom_left
-            id: office_scene_calls_label2
-            text: "Calls"
+#   # Office Calls Scene
+#   - button:
+#       height: $button_height
+#       width: $button_width
+#       checkable: true
+#       id: office_scene_calls_button2
+#       styles: control
+#       widgets:
+#         - label:
+#             text_font: $icon_font
+#             align: top_left
+#             id: office_scene_calls_icon2              
+#             text: $videocall
+#         - label:
+#             align: bottom_left
+#             id: office_scene_calls_label2
+#             text: "Calls"
 
-  # Office Calls Scene
-  - button: 
-      height: $button_height
-      width: $button_width
-      checkable: true
-      id: office_scene_calls_button
-      styles: control
-      widgets:
-        - label:
-            text_font: $icon_font
-            align: top_left
-            id: office_scene_calls_icon                
-            text: $videocall
-        - label:
-            align: bottom_left
-            id: office_scene_calls_label
-            text: "Calls"
-      on_press:
-        - homeassistant.service:
-            service: switch.toggle
-            data:
-              entity_id: switch.office_calls_stateful_scene
+#   # Office Calls Scene
+#   - button: 
+#       height: $button_height
+#       width: $button_width
+#       checkable: true
+#       id: office_scene_calls_button
+#       styles: control
+#       widgets:
+#         - label:
+#             text_font: $icon_font
+#             align: top_left
+#             id: office_scene_calls_icon                
+#             text: $videocall
+#         - label:
+#             align: bottom_left
+#             id: office_scene_calls_label
+#             text: "Calls"
+#       on_press:
+#         - homeassistant.service:
+#             service: switch.toggle
+#             data:
+#               entity_id: switch.office_calls_stateful_scene
 
-  # Office Evening Scene
-  - button: 
-      height: $button_height
-      width: $button_width
-      checkable: true
-      id: office_scene_evening_button
-      styles: control
-      widgets:
-        - label:
-            text_font: $icon_font
-            align: top_left
-            id: office_scene_evening_icon                
-            text: $nightlight
-        - label:
-            align: bottom_left
-            id: office_scene_evening_label
-            text: "Evening"
-      on_press:
-        - homeassistant.service:
-            service: switch.toggle
-            data:
-              entity_id: switch.office_evening_stateful_scene
+#   # Office Evening Scene
+#   - button: 
+#       height: $button_height
+#       width: $button_width
+#       checkable: true
+#       id: office_scene_evening_button
+#       styles: control
+#       widgets:
+#         - label:
+#             text_font: $icon_font
+#             align: top_left
+#             id: office_scene_evening_icon                
+#             text: $nightlight
+#         - label:
+#             align: bottom_left
+#             id: office_scene_evening_label
+#             text: "Evening"
+#       on_press:
+#         - homeassistant.service:
+#             service: switch.toggle
+#             data:
+#               entity_id: switch.office_evening_stateful_scene
 
 
   # Solar Power
@@ -96,19 +96,210 @@ widgets:
             text_font: big_label_font
             text_color: $text_color
 
+  # Current Weather
   - obj:
-      id: solar_power_widget1
-      styles: widget_half
-      scrollbar_mode: "off"
+      id: current_weather_widget
       widgets:
         - label:
-            text_font: $icon_font
-            align: left_mid
-            text: $solar_power_icon
+            id: current_weather_icon
+            text_font: icon_font
+            align: top_left
+            text: "\U000F0590"
             text_color: $text_color
         - label:
-            id: solar_power_label1
-            align: right_mid
-            text: "-- W"
-            text_font: big_label_font
+            id: current_weather_temp_label
+            align: center
+            text: "-- °C"
+            text_font: statistics_font
             text_color: $text_color
+        - label:
+            id: current_weather_condition_label
+            align: bottom_left
+            text: "--"
+            text_font: label_font
+            text_color: $text_color
+
+  # Weather hourly forecast
+  - obj:
+      id: weather_widget
+      styles: widget_double_width
+      scrollbar_mode: "off"
+      layout:
+        type: flex
+        flex_flow: row
+        flex_align_main: space_evenly
+        flex_align_cross: center
+      widgets:
+        - obj:
+            id: wx_col_0600
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "06:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_0600
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_0600
+                  text: "--°"
+                  text_font: label_font
+                  text_color: $text_color
+
+        - obj:
+            id: wx_col_0900
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "09:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_0900
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_0900
+                  text: "--°"
+                  text_font: label_font
+                  text_color: $text_color
+
+        - obj:
+            id: wx_col_1200
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "12:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_1200
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_1200
+                  text: "--°"
+                  text_font: label_font
+                  text_color: $text_color
+
+        - obj:
+            id: wx_col_1500
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "15:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_1500
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_1500
+                  text: "--°"
+                  text_font: label_font
+                  text_color: $text_color
+
+        - obj:
+            id: wx_col_1800
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "18:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_1800
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_1800
+                  text: "--°"
+                  text_font: label_font
+                  text_color: $text_color
+
+        - obj:
+            id: wx_col_2100
+            bg_opa: transp
+            border_width: 0
+            pad_all: 0px
+            width: 54px
+            height: 129px
+            scrollbar_mode: "off"
+            layout:
+              type: flex
+              flex_flow: column
+              flex_align_cross: center
+              flex_align_main: center
+            widgets:
+              - label:
+                  text: "21:00"
+                  text_color: $text_color
+                  text_font: clockbar_font
+              - label:
+                  id: wx_icon_2100
+                  text_font: icon_font_34
+                  text_color: $text_color
+                  text: "\U000F0590"
+              - label:
+                  id: wx_temp_label_2100
+                  text: "-- °C"
+                  text_font: label_font
+                  text_color: $text_color

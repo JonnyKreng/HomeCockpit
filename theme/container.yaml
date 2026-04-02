@@ -7,13 +7,16 @@ lvgl:
     - id: widget_double_height
       height: $widget_height_double
 
+    - id: widget_double_width
+      width: $widget_width_double
+
     - id: widget_double
       height: $widget_height_double
       width: $widget_width_double
 
     - id: widget_two_by_three
       height: $widget_height_double
-      width: $widget_width_double
+      width: $widget_width_tripple
 
   theme:
     obj:
