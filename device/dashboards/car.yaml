@@ -125,7 +125,7 @@ widgets:
         - label:
             text_font: $icon_font
             align: top_left
-            text: $lightning_icon
+            text: $flash
             text_color: $text_color
         - label:
             id: charge_power_label

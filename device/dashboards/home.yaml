@@ -90,7 +90,7 @@ widgets:
         - label:
             text_font: $icon_font
             align: top_left
-            text: $solar_power_icon
+            text: $solar_power
             text_color: $text_color
         - label:
             id: solar_power_label
@@ -110,7 +110,7 @@ widgets:
         - label:
             text_font: $icon_font
             align: top_left
-            text: $solar_power_icon
+            text: $solar_panel
             text_color: $text_color
         - label:
             id: solar_delivered_label

@@ -6,7 +6,7 @@ font:
     id: icon_font
     size: 48
     bpp: 8
-    glyphs: [
+    glyphs: &icon_glyphs [
       "\U000F0335",  # mdi-lightbulb
       "\U000F042B",  # mdi-printer-3d
       "\U000F0D43",  # mdi-air-filter
@@ -41,129 +41,35 @@ font:
       "\U000F0649",  # mdi-account-woman (female/person)
       "\U000F010B",  # mdi-car
       "\U000F0D0D",  # mdi-lightning-bolt
-      "\U000F089C",  # battery_charging_10
-      "\U000F0086",  # battery_charging_20
-      "\U000F0087",  # battery_charging_30
-      "\U000F0088",  # battery_charging_40
-      "\U000F089D",  # battery_charging_50
-      "\U000F0089",  # battery_charging_60
-      "\U000F089E",  # battery_charging_70
-      "\U000F008A",  # battery_charging_80
-      "\U000F008B",  # battery_charging_90
-      "\U000F0085",  # battery_charging_100
+      "\U000F089C",  # mdi-battery-charging-10
+      "\U000F0086",  # mdi-battery-charging-20
+      "\U000F0087",  # mdi-battery-charging-30
+      "\U000F0088",  # mdi-battery-charging-40
+      "\U000F089D",  # mdi-battery-charging-50
+      "\U000F0089",  # mdi-battery-charging-60
+      "\U000F089E",  # mdi-battery-charging-70
+      "\U000F008A",  # mdi-battery-charging-80
+      "\U000F008B",  # mdi-battery-charging-90
+      "\U000F0085",  # mdi-battery-charging-100
       "\U000F0079",  # mdi-battery
-      "\U000F05F1",  # mdi-ev_station
+      "\U000F05F1",  # mdi-ev-station
       "\U000F0241",  # mdi-flash
-      "\U000F0B6C"   # mdi-car-electric
+      "\U000F0B6C",  # mdi-car-electric
+      "\U000F0A72",  # mdi-solar-power
+      "\U000F0A6E"   # mdi-settings-helper
       ]
 
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
     id: icon_font_34
     size: 34
     bpp: 8
-    glyphs: [
-      "\U000F0335",  # mdi-lightbulb
-      "\U000F042B",  # mdi-printer-3d
-      "\U000F0D43",  # mdi-air-filter
-      "\U000F1051",  # mdi-led-strip-variant
-      "\U000F03D7",  # mdi-package-variant-closed
-      "\U000F07D6",  # mdi-led-strip
-      "\U000F00AC",  # mdi-blinds-closed
-      "\U000F1011",  # mdi-blinds-open
-      "\U000F1A4C",  # mdi-lightbulb-night
-      "\U000F1087",  # mdi-router-network
-      "\U000F036B",  # mdi-message-video
-      "\U000F0614",  # mdi-application-outline
-      "\U000F07DE",  # mdi-filament
-      "\U000F0317",  # mdi-lan
-      "\U000F1A73",  # mdi-solar-panel-large
-      "\U000F02DC",  # mdi-home
-      "\U000F0590",  # mdi-weather-cloudy
-      "\U000F0591",  # mdi-weather-fog
-      "\U000F0592",  # mdi-weather-hail
-      "\U000F0593",  # mdi-weather-lightning
-      "\U000F067E",  # mdi-weather-lightning-rainy
-      "\U000F0594",  # mdi-weather-night
-      "\U000F0595",  # mdi-weather-partly-cloudy
-      "\U000F0596",  # mdi-weather-pouring
-      "\U000F0597",  # mdi-weather-rainy
-      "\U000F0598",  # mdi-weather-snowy
-      "\U000F067F",  # mdi-weather-snowy-rainy
-      "\U000F0599",  # mdi-weather-sunny
-      "\U000F059D",  # mdi-weather-windy
-      "\U000F0D9B",  # mdi-solar-panel
-      "\U000F064D",  # mdi-account (male/person)
-      "\U000F0649",  # mdi-account-woman (female/person)
-      "\U000F010B",  # mdi-car
-      "\U000F089C",  # battery_charging_10
-      "\U000F0086",  # battery_charging_20
-      "\U000F0087",  # battery_charging_30
-      "\U000F0088",  # battery_charging_40
-      "\U000F089D",  # battery_charging_50
-      "\U000F0089",  # battery_charging_60
-      "\U000F089E",  # battery_charging_70
-      "\U000F008A",  # battery_charging_80
-      "\U000F008B",  # battery_charging_90
-      "\U000F0085",  # battery_charging_100
-      "\U000F0079",  # mdi-battery
-      "\U000F05F1",  # mdi-ev_station
-      "\U000F0241",  # mdi-flash
-      "\U000F0B6C"   # mdi-car-electric
-      ]
+    glyphs: *icon_glyphs
 
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
     id: icon_font_20
     size: 20
     bpp: 8
-    glyphs: [
-      "\U000F0335",  # mdi-lightbulb
-      "\U000F042B",  # mdi-printer-3d
-      "\U000F0D43",  # mdi-air-filter
-      "\U000F1051",  # mdi-led-strip-variant
-      "\U000F03D7",  # mdi-package-variant-closed
-      "\U000F07D6",  # mdi-led-strip
-      "\U000F00AC",  # mdi-blinds-closed
-      "\U000F1011",  # mdi-blinds-open
-      "\U000F1A4C",  # mdi-lightbulb-night
-      "\U000F1087",  # mdi-router-network
-      "\U000F036B",  # mdi-message-video
-      "\U000F0614",  # mdi-application-outline
-      "\U000F07DE",  # mdi-filament
-      "\U000F0317",  # mdi-lan
-      "\U000F1A73",  # mdi-solar-panel-large
-      "\U000F02DC",  # mdi-home
-      "\U000F0590",  # mdi-weather-cloudy
-      "\U000F0591",  # mdi-weather-fog
-      "\U000F0592",  # mdi-weather-hail
-      "\U000F0593",  # mdi-weather-lightning
-      "\U000F067E",  # mdi-weather-lightning-rainy
-      "\U000F0594",  # mdi-weather-night
-      "\U000F0595",  # mdi-weather-partly-cloudy
-      "\U000F0596",  # mdi-weather-pouring
-      "\U000F0597",  # mdi-weather-rainy
-      "\U000F0598",  # mdi-weather-snowy
-      "\U000F067F",  # mdi-weather-snowy-rainy
-      "\U000F0599",  # mdi-weather-sunny
-      "\U000F059D",  # mdi-weather-windy
-      "\U000F0D9B",  # mdi-solar-panel
-      "\U000F064D",  # mdi-account (male/person)
-      "\U000F0649",  # mdi-account-woman (female/person)
-      "\U000F010B",  # mdi-car
-      "\U000F089C",  # battery_charging_10
-      "\U000F0086",  # battery_charging_20
-      "\U000F0087",  # battery_charging_30
-      "\U000F0088",  # battery_charging_40
-      "\U000F089D",  # battery_charging_50
-      "\U000F0089",  # battery_charging_60
-      "\U000F089E",  # battery_charging_70
-      "\U000F008A",  # battery_charging_80
-      "\U000F008B",  # battery_charging_90
-      "\U000F0085",  # battery_charging_100
-      "\U000F0079",  # mdi-battery
-      "\U000F05F1",  # mdi-ev_station
-      "\U000F0241",  # mdi-flash
-      "\U000F0B6C"   # mdi-car-electric
-      ]
+    glyphs: *icon_glyphs
 
 
 # Map icons to names
@@ -183,25 +89,26 @@ substitutions:
   application:    "\U000F0614"
   filament:       "\U000F07DE"
   lan:            "\U000F0317"
-  solar_power_icon: "\U000F1A73"
+  solar_panel:    "\U000F1A73"
   home_icon:      "\U000F02DC"
   solart_panel_icon: "\U000F0D9B"
   male_icon:      "\U000F064D"
   female_icon:    "\U000F0649"
   car_icon:       "\U000F010B"
   lightning_icon: "\U000F0D0D"
-  battery_charging_10: "\U000F089C"
-  battery_charging_20: "\U000F0086"
-  battery_charging_30: "\U000F0087"
-  battery_charging_40: "\U000F0088"
-  battery_charging_50: "\U000F089D"
-  battery_charging_60: "\U000F0089"
-  battery_charging_70: "\U000F089E"
-  battery_charging_80: "\U000F008A"
-  battery_charging_90: "\U000F008B"
+  battery_charging_10:  "\U000F089C"
+  battery_charging_20:  "\U000F0086"
+  battery_charging_30:  "\U000F0087"
+  battery_charging_40:  "\U000F0088"
+  battery_charging_50:  "\U000F089D"
+  battery_charging_60:  "\U000F0089"
+  battery_charging_70:  "\U000F089E"
+  battery_charging_80:  "\U000F008A"
+  battery_charging_90:  "\U000F008B"
   battery_charging_100: "\U000F0085"
-  battery: "\U000F0079"
-  ev_station: "\U000F05F1" 
-  flash: "\U000F0241"
-  car_electric: "\U000F0B6C"
-
+  battery:        "\U000F0079"
+  ev_station:     "\U000F05F1"
+  flash:          "\U000F0241"
+  car_electric:   "\U000F0B6C"
+  solar_power:    "\U000F0A72"
+  settings_helper: "\U000F0A6E"

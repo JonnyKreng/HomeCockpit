@@ -71,4 +71,5 @@ lvgl:
               - <<: !include dashboards/home.yaml
               - <<: !include dashboards/solar.yaml
               - <<: !include dashboards/car.yaml
+              - <<: !include dashboards/settings.yaml
               
