@@ -70,6 +70,7 @@ lvgl:
             tabs:
               - <<: !include dashboards/home.yaml
               - <<: !include dashboards/solar.yaml
+              - <<: !include dashboards/heating.yaml
               - <<: !include dashboards/car.yaml
               - <<: !include dashboards/settings.yaml
               

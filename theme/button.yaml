@@ -13,6 +13,23 @@ lvgl:
       bg_color: $button_control_color
 
   theme:
+    arc:
+      arc_color: $heighlight_color
+      arc_width: 8
+      arc_rounded: true
+      indicator:
+        arc_color: $heighlight_color
+        arc_width: 8
+        arc_rounded: true
+      knob:
+        bg_color: $heighlight_color
+        radius: 100%
+        pad_all: 6px
+      main:
+        arc_color: $primary_color
+        arc_width: 8
+
+
     button:
       text_font: label_font
       scroll_on_focus: false

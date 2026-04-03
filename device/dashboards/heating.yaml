@@ -1,0 +1,91 @@
+name: $radiator_icon
+id: heating_tab
+layout:
+  type: grid
+  grid_columns: [194, 194, 194, 194, 194]
+  grid_rows: [157, 157, 157]
+  pad_row: 10
+  pad_column: 10
+width: 100%
+height: 100%
+bg_color: $background_color
+bg_opa: cover
+pad_all: 0
+pad_top: 10
+
+widgets:
+
+  # ── Thermostat widget  [col 0, row 0-1] ────────────────────────────────────
+  - obj:
+      id: thermostat_widget
+      grid_cell_column_pos: 0
+      grid_cell_row_pos: 0
+      grid_cell_row_span: 1
+      grid_cell_column_span: 2
+      scrollbar_mode: "off"
+      widgets:
+
+        # Horseshoe arc — matches HA thermostat card
+        - arc:
+            id: thermostat_arc
+            align: top_mid
+            min_value: 14
+            max_value: 25
+            value: 20
+
+        # Current temperature — centred inside arc
+        - label:
+            id: thermostat_current_label
+            align: top_mid
+            y: 30
+            text: "--°"
+            text_font: statistics_font
+            text_color: $text_color
+
+        # "aktuell" caption
+        - label:
+            align: top_mid
+            y: 88
+            text: "--°"
+            text_font: clockbar_font
+            text_color: $text_color
+
+        # HVAC action status
+        - label:
+            id: thermostat_status_label
+            align: top_mid
+            y: 106
+            text: "---"
+            text_font: clockbar_font
+            text_color: $text_color
+
+        - button:
+            id: thermostat_decrease_button
+            align: left_mid
+            width: 25%
+            height: 100%
+            text_font: label_font
+            text_color: $text_color
+            bg_color: $background_color
+            widgets:
+              - label:
+                  text: "-"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+        
+        - button:
+            id: thermostat_increase_button
+            align: right_mid
+            width: 25%
+            height: 100%
+            text_font: label_font
+            text_color: $text_color
+            bg_color: $background_color
+            widgets:
+              - label:
+                  text: "+"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+            

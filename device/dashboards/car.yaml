@@ -2,8 +2,8 @@ name: $car_icon
 id: car_tab
 layout:
   type: grid
-  grid_columns: [194, 194, 194]
-  grid_rows: [157, 157]
+  grid_columns: [194, 194, 194, 194, 194]
+  grid_rows: [157, 157, 157]
   pad_row: 10
   pad_column: 10
 width: 100%
@@ -39,6 +39,11 @@ widgets:
         - slider:
             id: charge_target_slider
             align: bottom_mid
+            bg_color: $heighlight_color
+            indicator:
+              bg_color: $heighlight_color
+            knob:
+              bg_color: $heighlight_color
             width: 90%
             min_value: 1
             max_value: 50
@@ -161,9 +166,3 @@ widgets:
             text: "-- kWh"
             text_font: statistics_font
             text_color: $text_color
-
-  # Spacer           [col 2, row 1]
-  - obj:
-      styles: placeholder_widget
-      grid_cell_column_pos: 2
-      grid_cell_row_pos: 1

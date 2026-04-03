@@ -1,19 +1,19 @@
 esphome:
   includes:
-    - addon/solar-chart/solar-chart.h
     - addon/script-extensions/theme.h
+    - addon/script-extensions/chart.h
+    - addon/solar-chart/solar-chart.h
   on_boot:
     then:
       - delay: 1sec
       - lambda: |-
-            draw_chart(id(chart_ancor_widget));
-            draw_chart(id(solar_chart_anchor));
+          chart_home_instance = draw_solar_chart(id(chart_ancor_widget));
+          chart_solar_instance = draw_solar_chart(id(solar_chart_anchor));
   platformio_options:
     build_flags:
       - -D LV_USE_CHART=1
 
 globals:
-  # Define a global variable as a vector with type float.
   - id: chart_values
     type: std::vector<float>
 
@@ -29,18 +29,9 @@ interval:
             id(chart_values).pop_back();
           }
           float average = value / counter;
-          ESP_LOGD("Interval", "Average is %f, count is %i", average, counter); 
-          update_chart(average);
-
-# interval:
-#   - interval: 0.1s
-#     startup_delay: 2sec
-#     then:
-#       - lambda: |-
-
-#           static float value = 0;
-#           update_chart(sin(value/4.0) * 400 + 400);
-#           value += 0.1;
+          
+          update_chart(chart_home_instance, average);
+          update_chart(chart_solar_instance, average);
 
 sensor:
   - platform: homeassistant

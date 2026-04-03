@@ -37,12 +37,6 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
-  # Spacer            [col 1, row 0]
-  - obj:
-      styles: placeholder_widget
-      grid_cell_column_pos: 1
-      grid_cell_row_pos: 0
-
   # People at home   [col 2, row 0]
   - obj:
       id: people_at_home_widget
@@ -355,14 +349,3 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
-  # Spacer            [col 1, row 2]
-  - obj:
-      styles: placeholder_widget
-      grid_cell_column_pos: 1
-      grid_cell_row_pos: 2
-
-  # Spacer            [col 2, row 2]
-  - obj:
-      styles: placeholder_widget
-      grid_cell_column_pos: 2
-      grid_cell_row_pos: 2
