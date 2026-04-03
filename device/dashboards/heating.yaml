@@ -15,77 +15,423 @@ pad_top: 10
 
 widgets:
 
-  # ── Thermostat widget  [col 0, row 0-1] ────────────────────────────────────
+  # ── Bathroom (Bad) — col 0, rows 0-2 ───────────────────────────────────────
   - obj:
-      id: thermostat_widget
+      id: bad_thermostat_widget
       grid_cell_column_pos: 0
       grid_cell_row_pos: 0
-      grid_cell_row_span: 1
-      grid_cell_column_span: 2
+      grid_cell_row_span: 3
       scrollbar_mode: "off"
       widgets:
 
-        # Horseshoe arc — matches HA thermostat card
+        - label:
+            text: "Bad"
+            text_font: label_font
+            text_color: $text_color
+            align: top_left
+
         - arc:
-            id: thermostat_arc
+            id: bad_arc
             align: top_mid
-            min_value: 14
-            max_value: 25
+            y: 55
+            width: 130
+            height: 130
+            min_value: 5
+            max_value: 30
             value: 20
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(bad_arc_updating);
+                  then:
+                    - lambda: |-
+                        char buf[8];
+                        snprintf(buf, sizeof(buf), "%d°", x);
+                        lv_label_set_text(id(bad_target_label), buf);
+                    - homeassistant.service:
+                        service: climate.set_temperature
+                        data:
+                          entity_id: climate.bad_sonoff_trvzb_thermostat
+                        data_template:
+                          temperature: !lambda return std::to_string(x);
 
-        # Current temperature — centred inside arc
         - label:
-            id: thermostat_current_label
+            id: bad_target_label
             align: top_mid
-            y: 30
+            y: 92
             text: "--°"
-            text_font: statistics_font
+            text_font: big_label_font
             text_color: $text_color
 
-        # "aktuell" caption
         - label:
+            id: bad_current_label
             align: top_mid
-            y: 88
-            text: "--°"
-            text_font: clockbar_font
-            text_color: $text_color
-
-        # HVAC action status
-        - label:
-            id: thermostat_status_label
-            align: top_mid
-            y: 106
-            text: "---"
+            y: 135
+            text: "~--°"
             text_font: clockbar_font
             text_color: $text_color
 
         - button:
-            id: thermostat_decrease_button
-            align: left_mid
-            width: 25%
-            height: 100%
-            text_font: label_font
-            text_color: $text_color
-            bg_color: $background_color
+            align: top_mid
+            x: -36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(bad_arc), lv_arc_get_value(id(bad_arc)) - 1);
             widgets:
               - label:
                   text: "-"
                   align: center
                   text_font: label_font
                   text_color: $text_color
-        
+
         - button:
-            id: thermostat_increase_button
-            align: right_mid
-            width: 25%
-            height: 100%
-            text_font: label_font
-            text_color: $text_color
-            bg_color: $background_color
+            align: top_mid
+            x: 36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(bad_arc), lv_arc_get_value(id(bad_arc)) + 1);
             widgets:
               - label:
                   text: "+"
                   align: center
                   text_font: label_font
                   text_color: $text_color
-            
+
+        - dropdown:
+            id: bad_mode_dropdown
+            align: bottom_mid
+            y: -10
+            width: 100%
+            options:
+              - "Aus"
+              - "Heizen"
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(bad_dropdown_updating);
+                  then:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.bad_sonoff_trvzb_thermostat
+                        data_template:
+                          hvac_mode: !lambda |-
+                            return x == 0 ? std::string("off") : std::string("heat");
+
+  # ── Bedroom (Schlafzimmer) — col 1-2, rows 0-2 ─────────────────────────────
+  - obj:
+      id: schlafzimmer_thermostat_widget
+      grid_cell_column_pos: 1
+      grid_cell_row_pos: 0
+      grid_cell_column_span: 2
+      grid_cell_row_span: 3
+      scrollbar_mode: "off"
+      widgets:
+
+        - label:
+            text: "Schlafzimmer"
+            text_font: label_font
+            text_color: $text_color
+            align: top_left
+
+        - arc:
+            id: schlafzimmer_arc
+            align: top_mid
+            y: 55
+            width: 200
+            height: 200
+            min_value: 5
+            max_value: 30
+            value: 20
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(schlafzimmer_arc_updating);
+                  then:
+                    - lambda: |-
+                        char buf[8];
+                        snprintf(buf, sizeof(buf), "%d°", x);
+                        lv_label_set_text(id(schlafzimmer_target_label), buf);
+                    - homeassistant.service:
+                        service: climate.set_temperature
+                        data:
+                          entity_id: climate.schlafzimmer_sonoff_trvzb_thermostat
+                        data_template:
+                          temperature: !lambda return std::to_string(x);
+
+        - label:
+            id: schlafzimmer_target_label
+            align: top_mid
+            y: 122
+            text: "--°"
+            text_font: big_label_font
+            text_color: $text_color
+
+        - label:
+            id: schlafzimmer_current_label
+            align: top_mid
+            y: 166
+            text: "~--°"
+            text_font: clockbar_font
+            text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: -36
+            y: 270
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(schlafzimmer_arc), lv_arc_get_value(id(schlafzimmer_arc)) - 1);
+            widgets:
+              - label:
+                  text: "-"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: 36
+            y: 270
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(schlafzimmer_arc), lv_arc_get_value(id(schlafzimmer_arc)) + 1);
+            widgets:
+              - label:
+                  text: "+"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - dropdown:
+            id: schlafzimmer_mode_dropdown
+            align: bottom_mid
+            y: -10
+            width: 60%
+            options:
+              - "Aus"
+              - "Heizen"
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(schlafzimmer_dropdown_updating);
+                  then:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.schlafzimmer_sonoff_trvzb_thermostat
+                        data_template:
+                          hvac_mode: !lambda |-
+                            return x == 0 ? std::string("off") : std::string("heat");
+
+  # ── Living room — Essecke — col 3, rows 0-2 ────────────────────────────────
+  - obj:
+      id: essecke_thermostat_widget
+      grid_cell_column_pos: 3
+      grid_cell_row_pos: 0
+      grid_cell_row_span: 3
+      scrollbar_mode: "off"
+      widgets:
+
+        - label:
+            text: "Essecke"
+            text_font: label_font
+            text_color: $text_color
+            align: top_left
+
+        - arc:
+            id: essecke_arc
+            align: top_mid
+            y: 55
+            width: 130
+            height: 130
+            min_value: 5
+            max_value: 30
+            value: 20
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(essecke_arc_updating);
+                  then:
+                    - lambda: |-
+                        char buf[8];
+                        snprintf(buf, sizeof(buf), "%d°", x);
+                        lv_label_set_text(id(essecke_target_label), buf);
+                    - homeassistant.service:
+                        service: climate.set_temperature
+                        data:
+                          entity_id: climate.essecke_sonoff_trvzb_thermostat
+                        data_template:
+                          temperature: !lambda return std::to_string(x);
+
+        - label:
+            id: essecke_target_label
+            align: top_mid
+            y: 92
+            text: "--°"
+            text_font: big_label_font
+            text_color: $text_color
+
+        - label:
+            id: essecke_current_label
+            align: top_mid
+            y: 135
+            text: "~--°"
+            text_font: clockbar_font
+            text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: -36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(essecke_arc), lv_arc_get_value(id(essecke_arc)) - 1);
+            widgets:
+              - label:
+                  text: "-"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: 36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(essecke_arc), lv_arc_get_value(id(essecke_arc)) + 1);
+            widgets:
+              - label:
+                  text: "+"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - dropdown:
+            id: essecke_mode_dropdown
+            align: bottom_mid
+            y: -10
+            width: 100%
+            options:
+              - "Aus"
+              - "Heizen"
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(essecke_dropdown_updating);
+                  then:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.essecke_sonoff_trvzb_thermostat
+                        data_template:
+                          hvac_mode: !lambda |-
+                            return x == 0 ? std::string("off") : std::string("heat");
+
+  # ── Living room — Balkon — col 4, rows 0-2 ─────────────────────────────────
+  - obj:
+      id: balkon_thermostat_widget
+      grid_cell_column_pos: 4
+      grid_cell_row_pos: 0
+      grid_cell_row_span: 3
+      scrollbar_mode: "off"
+      widgets:
+
+        - label:
+            text: "Balkon"
+            text_font: label_font
+            text_color: $text_color
+            align: top_left
+
+        - arc:
+            id: balkon_arc
+            align: top_mid
+            y: 55
+            width: 130
+            height: 130
+            min_value: 5
+            max_value: 30
+            value: 20
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(balkon_arc_updating);
+                  then:
+                    - lambda: |-
+                        char buf[8];
+                        snprintf(buf, sizeof(buf), "%d°", x);
+                        lv_label_set_text(id(balkon_target_label), buf);
+                    - homeassistant.service:
+                        service: climate.set_temperature
+                        data:
+                          entity_id: climate.balkon_sonoff_trvzb_thermostat
+                        data_template:
+                          temperature: !lambda return std::to_string(x);
+
+        - label:
+            id: balkon_target_label
+            align: top_mid
+            y: 92
+            text: "--°"
+            text_font: big_label_font
+            text_color: $text_color
+
+        - label:
+            id: balkon_current_label
+            align: top_mid
+            y: 135
+            text: "~--°"
+            text_font: clockbar_font
+            text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: -36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(balkon_arc), lv_arc_get_value(id(balkon_arc)) - 1);
+            widgets:
+              - label:
+                  text: "-"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - button:
+            align: top_mid
+            x: 36
+            y: 200
+            styles: thermostat_ctrl_btn
+            on_click:
+              - lambda: lv_arc_set_value(id(balkon_arc), lv_arc_get_value(id(balkon_arc)) + 1);
+            widgets:
+              - label:
+                  text: "+"
+                  align: center
+                  text_font: label_font
+                  text_color: $text_color
+
+        - dropdown:
+            id: balkon_mode_dropdown
+            align: bottom_mid
+            y: -10
+            width: 100%
+            options:
+              - "Aus"
+              - "Heizen"
+            on_value:
+              - if:
+                  condition:
+                    lambda: return !id(balkon_dropdown_updating);
+                  then:
+                    - homeassistant.service:
+                        service: climate.set_hvac_mode
+                        data:
+                          entity_id: climate.balkon_sonoff_trvzb_thermostat
+                        data_template:
+                          hvac_mode: !lambda |-
+                            return x == 0 ? std::string("off") : std::string("heat");

@@ -57,7 +57,7 @@ font:
       "\U000F0B6C",  # mdi-car-electric
       "\U000F0A72",  # mdi-solar-power
       "\U000F0A6E",  # mdi-settings-helper
-      "\U000F0487",  # mdi-radiator
+      "\U000F0438",  # mdi-radiator
       "\U000F0238"   # mdi-fire
       ]
 
@@ -114,5 +114,5 @@ substitutions:
   car_electric:   "\U000F0B6C"
   solar_power:    "\U000F0A72"
   settings_helper: "\U000F0A6E"
-  radiator_icon:  "\U000F0487"
+  radiator_icon:  "\U000F0438"
   fire_icon:      "\U000F0238"

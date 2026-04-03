@@ -14,3 +14,4 @@ packages:
   weather: !include addon/weather.yaml
   people: !include addon/people.yaml
   car: !include addon/car.yaml
+  heating: !include addon/heating.yaml

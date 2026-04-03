@@ -1,0 +1,165 @@
+globals:
+  - id: bad_arc_updating
+    type: bool
+    initial_value: 'false'
+  - id: bad_dropdown_updating
+    type: bool
+    initial_value: 'false'
+  - id: schlafzimmer_arc_updating
+    type: bool
+    initial_value: 'false'
+  - id: schlafzimmer_dropdown_updating
+    type: bool
+    initial_value: 'false'
+  - id: essecke_arc_updating
+    type: bool
+    initial_value: 'false'
+  - id: essecke_dropdown_updating
+    type: bool
+    initial_value: 'false'
+  - id: balkon_arc_updating
+    type: bool
+    initial_value: 'false'
+  - id: balkon_dropdown_updating
+    type: bool
+    initial_value: 'false'
+
+sensor:
+
+  # ── Bathroom (Bad) ─────────────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.bad_sonoff_trvzb_thermostat
+    attribute: current_temperature
+    id: bad_current_temp
+    on_value:
+      lambda: |-
+        char buf[10];
+        snprintf(buf, sizeof(buf), "~%.1f°", x);
+        lv_label_set_text(id(bad_current_label), buf);
+
+  - platform: homeassistant
+    entity_id: climate.bad_sonoff_trvzb_thermostat
+    attribute: temperature
+    id: bad_target_temp
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(bad_target_label), buf);
+        id(bad_arc_updating) = true;
+        lv_arc_set_value(id(bad_arc), (int)x);
+        id(bad_arc_updating) = false;
+
+  # ── Bedroom (Schlafzimmer) ─────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.schlafzimmer_sonoff_trvzb_thermostat
+    attribute: current_temperature
+    id: schlafzimmer_current_temp
+    on_value:
+      lambda: |-
+        char buf[10];
+        snprintf(buf, sizeof(buf), "~%.1f°", x);
+        lv_label_set_text(id(schlafzimmer_current_label), buf);
+
+  - platform: homeassistant
+    entity_id: climate.schlafzimmer_sonoff_trvzb_thermostat
+    attribute: temperature
+    id: schlafzimmer_target_temp
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(schlafzimmer_target_label), buf);
+        id(schlafzimmer_arc_updating) = true;
+        lv_arc_set_value(id(schlafzimmer_arc), (int)x);
+        id(schlafzimmer_arc_updating) = false;
+
+  # ── Living room — Essecke ──────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.essecke_sonoff_trvzb_thermostat
+    attribute: current_temperature
+    id: essecke_current_temp
+    on_value:
+      lambda: |-
+        char buf[10];
+        snprintf(buf, sizeof(buf), "~%.1f°", x);
+        lv_label_set_text(id(essecke_current_label), buf);
+
+  - platform: homeassistant
+    entity_id: climate.essecke_sonoff_trvzb_thermostat
+    attribute: temperature
+    id: essecke_target_temp
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(essecke_target_label), buf);
+        id(essecke_arc_updating) = true;
+        lv_arc_set_value(id(essecke_arc), (int)x);
+        id(essecke_arc_updating) = false;
+
+  # ── Living room — Balkon ───────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.balkon_sonoff_trvzb_thermostat
+    attribute: current_temperature
+    id: balkon_current_temp
+    on_value:
+      lambda: |-
+        char buf[10];
+        snprintf(buf, sizeof(buf), "~%.1f°", x);
+        lv_label_set_text(id(balkon_current_label), buf);
+
+  - platform: homeassistant
+    entity_id: climate.balkon_sonoff_trvzb_thermostat
+    attribute: temperature
+    id: balkon_target_temp
+    on_value:
+      lambda: |-
+        char buf[8];
+        snprintf(buf, sizeof(buf), "%.0f°", x);
+        lv_label_set_text(id(balkon_target_label), buf);
+        id(balkon_arc_updating) = true;
+        lv_arc_set_value(id(balkon_arc), (int)x);
+        id(balkon_arc_updating) = false;
+
+text_sensor:
+
+  # ── Bathroom (Bad) ─────────────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.bad_sonoff_trvzb_thermostat
+    id: bad_hvac_mode
+    on_value:
+      lambda: |-
+        id(bad_dropdown_updating) = true;
+        lv_dropdown_set_selected(id(bad_mode_dropdown)->obj, x == "off" ? 0 : 1);
+        id(bad_dropdown_updating) = false;
+
+  # ── Bedroom (Schlafzimmer) ─────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.schlafzimmer_sonoff_trvzb_thermostat
+    id: schlafzimmer_hvac_mode
+    on_value:
+      lambda: |-
+        id(schlafzimmer_dropdown_updating) = true;
+        lv_dropdown_set_selected(id(schlafzimmer_mode_dropdown)->obj, x == "off" ? 0 : 1);
+        id(schlafzimmer_dropdown_updating) = false;
+
+  # ── Living room — Essecke ──────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.essecke_sonoff_trvzb_thermostat
+    id: essecke_hvac_mode
+    on_value:
+      lambda: |-
+        id(essecke_dropdown_updating) = true;
+        lv_dropdown_set_selected(id(essecke_mode_dropdown)->obj, x == "off" ? 0 : 1);
+        id(essecke_dropdown_updating) = false;
+
+  # ── Living room — Balkon ───────────────────────────────────────────────────
+  - platform: homeassistant
+    entity_id: climate.balkon_sonoff_trvzb_thermostat
+    id: balkon_hvac_mode
+    on_value:
+      lambda: |-
+        id(balkon_dropdown_updating) = true;
+        lv_dropdown_set_selected(id(balkon_mode_dropdown)->obj, x == "off" ? 0 : 1);
+        id(balkon_dropdown_updating) = false;

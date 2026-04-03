@@ -12,6 +12,15 @@ lvgl:
     - id: control
       bg_color: $button_control_color
 
+    - id: thermostat_ctrl_btn
+      width: 52px
+      height: 44px
+      radius: $widget_radius
+      bg_color: $primary_color
+      pad_all: 6px
+      shadow_width: 0
+      border_width: 0
+
   theme:
     arc:
       arc_color: $heighlight_color
@@ -29,6 +38,21 @@ lvgl:
         arc_color: $primary_color
         arc_width: 8
 
+
+    dropdown:
+      bg_color: $primary_color
+      text_color: $text_color
+      border_color: $heighlight_color
+      border_width: 1
+      radius: $widget_radius
+      text_font: clockbar_font
+
+    dropdown_list:
+      bg_color: $primary_color
+      text_color: $text_color
+      border_color: $heighlight_color
+      border_width: 1
+      radius: $widget_radius
 
     button:
       text_font: label_font
