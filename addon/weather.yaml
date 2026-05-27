@@ -153,8 +153,7 @@ text_sensor:
 
 sensor:
   - platform: homeassistant
-    entity_id: weather.forecast_home
-    attribute: temperature
+    entity_id: sensor.indoor_outdoor_meter_2f1a
     id: current_weather_temp
     on_value:
       lambda: |-

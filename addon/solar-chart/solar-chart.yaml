@@ -22,8 +22,17 @@ interval:
     startup_delay: 10sec
     then:
       - lambda: |-
+          static float last_value = 0;
+
           float value = 0;
           int counter = id(chart_values).size();
+
+          if(counter == 0) {
+            update_chart(chart_home_instance, last_value);
+            update_chart(chart_solar_instance, last_value);
+            return;
+          }
+
           for(int i = 0; i < counter; i++) {
             value += id(chart_values).back();
             id(chart_values).pop_back();
@@ -32,6 +41,7 @@ interval:
           
           update_chart(chart_home_instance, average);
           update_chart(chart_solar_instance, average);
+          last_value = average;
 
 sensor:
   - platform: homeassistant
@@ -57,3 +67,17 @@ sensor:
         snprintf(buf, sizeof(buf), "%.1f kWh", x);
         lv_label_set_text(id(solar_delivered_label), buf);
         lv_label_set_text(id(solar_delivered_label_solar_tab), buf);
+
+  - platform: homeassistant
+    entity_id: sensor.steckdose_nr_3_summation_delivered
+    force_update: True
+    id: solar_delivered_total
+    on_value:
+      lambda: |-
+        char buf[32];
+        // snprintf(buf, sizeof(buf), "%.0f kWh", x);
+
+        float money = x * 0.34;
+
+        snprintf(buf, sizeof(buf), "%.0f kWh\n%.2f €", x, money);
+        lv_label_set_text(id(solar_delivered_total_label_solar_tab), buf);

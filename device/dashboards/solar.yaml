@@ -57,6 +57,26 @@ widgets:
             text_font: statistics_font
             text_color: $text_color
 
+  # Solar Delivered  [col 1, row 0]
+  - obj:
+      id: solar_delivered_total_widget_solar_tab
+      grid_cell_column_pos: 2
+      grid_cell_row_pos: 0
+      scrollbar_mode: "off"
+      widgets:
+        - label:
+            text_font: $icon_font
+            align: top_left
+            text: $solar_panel
+            text_color: $text_color
+        - label:
+            id: solar_delivered_total_label_solar_tab
+            x: 0
+            y: 70
+            text: "-- kWh\n-- €"
+            text_font: label_font
+            text_color: $text_color
+
   # ── Row 1 ──────────────────────────────────────────────────────────────────
 
   # Chart anchor     [col 0-1, row 1]
