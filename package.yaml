@@ -15,3 +15,9 @@ packages:
   people: !include addon/people.yaml
   car: !include addon/car.yaml
   #heating: !include addon/heating.yaml
+
+# Temporary workaround for the missing lv_conf.h file, which is required for the LVGL component. This will be removed once the PR is merged and the component is available in the registry.
+external_components:
+  - source: github://pr#16362
+    components: [lvgl]
+    refresh: 1h
