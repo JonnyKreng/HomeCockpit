@@ -22,7 +22,7 @@ script:
       - lvgl.label.update:
           id: display_time
           text: !lambda |-
-            static char time_buf[17];
+            static char time_buf[32];
             auto now = id(sntp_time).now();
-            snprintf(time_buf, sizeof(time_buf), "%02d:%02d", now.hour, now.minute);
+            snprintf(time_buf, sizeof(time_buf), "%02d:%02d  -  %02d.%02d", now.hour, now.minute, now.day_of_month, now.month);
             return time_buf;

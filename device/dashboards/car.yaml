@@ -60,10 +60,7 @@ widgets:
                     - globals.set:
                         id: charging_active
                         value: 'false'
-                    - homeassistant.service:
-                        service: switch.turn_off
-                        data:
-                          entity_id: switch.steckdose_nr_4
+                    - switch.turn_off: charger_switch
                     - lvgl.widget.update:
                         id: charge_button
                         state:
@@ -72,6 +69,7 @@ widgets:
                         lv_label_set_text(id(charge_session_icon), "\U000F0079");
                         lv_label_set_text(id(charge_button_label), "Laden starten");
                         lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+                        id(car_charging).publish_state(false);
 
   # Charge Button    [col 2, row 0]
   - button:
@@ -99,24 +97,20 @@ widgets:
               - lambda: |-
                   id(charge_start_kwh) = id(charger_kwh).state;
                   id(charging_active) = true;
+                  id(car_charging).publish_state(true);
                   lv_label_set_text(id(charge_button_label), "Laden stoppen");
                   lv_label_set_text(id(top_status_icon), "\U000F05F1");
                   lv_obj_set_style_text_color(id(top_status_icon), lv_color_hex(0xFFD700), LV_PART_MAIN);
                   lv_obj_clear_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-              - homeassistant.service:
-                  service: switch.turn_on
-                  data:
-                    entity_id: switch.steckdose_nr_4
+              - switch.turn_on: charger_switch
             else:
               - lambda: |-
                   id(charging_active) = false;
+                  id(car_charging).publish_state(false);
                   lv_label_set_text(id(charge_session_icon), "\U000F0079");
                   lv_label_set_text(id(charge_button_label), "Laden starten");
                   lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-              - homeassistant.service:
-                  service: switch.turn_off
-                  data:
-                    entity_id: switch.steckdose_nr_4
+              - switch.turn_off: charger_switch
 
   # ── Row 1 ──────────────────────────────────────────────────────────────────
 

@@ -6,6 +6,12 @@ globals:
     type: float
     initial_value: '0.0'
 
+binary_sensor:
+  - platform: template
+    name: "Car Charging"
+    id: car_charging
+    icon: "mdi:ev-station"
+
 sensor:
   - platform: homeassistant
     entity_id: sensor.steckdose_nr_4_power
@@ -61,6 +67,7 @@ sensor:
           then:
             - lambda: |-
                 id(charging_active) = false;
+                id(car_charging).publish_state(false);
                 lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
                 lv_label_set_text(id(charge_session_icon), "\U000F0079");
                 lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
@@ -68,10 +75,7 @@ sensor:
                 lv_label_set_text(id(home_charge_session_pct_label), "--%");
                 lv_label_set_text(id(charge_button_label), "Laden starten");
                 lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-            - homeassistant.service:
-                service: switch.turn_off
-                data:
-                  entity_id: switch.steckdose_nr_4
+            - switch.turn_off: charger_switch
 
 switch:
   - platform: homeassistant
@@ -81,6 +85,7 @@ switch:
       lambda: |-
         if (!x) {
           id(charging_active) = false;
+          id(car_charging).publish_state(false);
           lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
           lv_label_set_text(id(charge_session_icon), "\U000F0079");
           lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
