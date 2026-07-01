@@ -12,6 +12,24 @@ binary_sensor:
     id: car_charging
     icon: "mdi:ev-station"
 
+  - platform: homeassistant
+    entity_id: switch.steckdose_nr_4
+    id: charger_outlet_state
+    internal: true
+    on_state:
+      lambda: |-
+        if (!x && id(charging_active)) {
+          id(charging_active) = false;
+          id(car_charging).publish_state(false);
+          lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
+          lv_label_set_text(id(charge_session_icon), "\U000F0079");
+          lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
+          lv_label_set_text(id(charge_session_pct_label), "--%");
+          lv_label_set_text(id(home_charge_session_pct_label), "--%");
+          lv_label_set_text(id(charge_button_label), "Laden starten");
+          lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
+        }
+
 sensor:
   - platform: homeassistant
     entity_id: sensor.steckdose_nr_4_power
@@ -59,11 +77,11 @@ sensor:
           lv_label_set_text(id(home_charge_session_icon), icon);
       - if:
           condition:
-            lambda: |-
-              if (!id(charging_active)) return false;
-              float charged = x - id(charge_start_kwh);
-              float target = lv_slider_get_value(id(charge_target_slider));
-              return charged >= target;
+            - lambda: |-
+                if (!id(charging_active)) return false;
+                float charged = x - id(charge_start_kwh);
+                float target = lv_slider_get_value(id(charge_target_slider));
+                return charged >= target;
           then:
             - lambda: |-
                 id(charging_active) = false;
@@ -75,22 +93,4 @@ sensor:
                 lv_label_set_text(id(home_charge_session_pct_label), "--%");
                 lv_label_set_text(id(charge_button_label), "Laden starten");
                 lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-            - switch.turn_off: charger_switch
 
-switch:
-  - platform: homeassistant
-    entity_id: switch.steckdose_nr_4
-    id: charger_switch
-    on_state:
-      lambda: |-
-        if (!x) {
-          id(charging_active) = false;
-          id(car_charging).publish_state(false);
-          lv_obj_clear_state(id(charge_button), LV_STATE_CHECKED);
-          lv_label_set_text(id(charge_session_icon), "\U000F0079");
-          lv_label_set_text(id(home_charge_session_icon), "\U000F0079");
-          lv_label_set_text(id(charge_session_pct_label), "--%");
-          lv_label_set_text(id(home_charge_session_pct_label), "--%");
-          lv_label_set_text(id(charge_button_label), "Laden starten");
-          lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-        }

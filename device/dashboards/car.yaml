@@ -60,7 +60,6 @@ widgets:
                     - globals.set:
                         id: charging_active
                         value: 'false'
-                    - switch.turn_off: charger_switch
                     - lvgl.widget.update:
                         id: charge_button
                         state:
@@ -102,7 +101,6 @@ widgets:
                   lv_label_set_text(id(top_status_icon), "\U000F05F1");
                   lv_obj_set_style_text_color(id(top_status_icon), lv_color_hex(0xFFD700), LV_PART_MAIN);
                   lv_obj_clear_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-              - switch.turn_on: charger_switch
             else:
               - lambda: |-
                   id(charging_active) = false;
@@ -110,7 +108,6 @@ widgets:
                   lv_label_set_text(id(charge_session_icon), "\U000F0079");
                   lv_label_set_text(id(charge_button_label), "Laden starten");
                   lv_obj_add_flag(id(top_status_icon), LV_OBJ_FLAG_HIDDEN);
-              - switch.turn_off: charger_switch
 
   # ── Row 1 ──────────────────────────────────────────────────────────────────
 
